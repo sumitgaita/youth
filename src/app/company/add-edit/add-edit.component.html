@@ -1,0 +1,84 @@
+<h6 *ngIf="isAddMode">Add Company</h6>
+<h6 *ngIf="!isAddMode">Edit Company</h6>
+
+<div class="settingsFromSection">
+
+  <div class="formArea">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3 row">
+        <label for="" class="col-sm-2 col-form-label">Company Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="" placeholder="Type Company Name" value="">
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="" class="col-sm-2 col-form-label">Contact Number</label>
+        <div class="col-sm-5">
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">+91</span>
+            <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">+91</span>
+            <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="" class="col-sm-2 col-form-label">Email ID</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="" placeholder="Type Email Id" value="">
+        </div>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="" placeholder="Type Email Id" value="">
+        </div>
+      </div>
+      <hr>
+      <div class="mb-3 row">
+        <div class="col-sm-6">
+          <label for="" class="form-label">Address</label>
+          <textarea class="form-control" id="" rows="5"></textarea>
+        </div>
+        <div class="col-sm-6">
+          <div class="mb-3 row">
+            <div class="col-sm-6">
+              <label for="" class="form-label">Country</label>
+              <input type="text" class="form-control" id="" placeholder="Type Country" value="">
+            </div>
+            <div class="col-sm-6">
+              <label for="" class="form-label">State</label>
+              <input type="text" class="form-control" id="" placeholder="Type State" value="">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-sm-6">
+              <label for="" class="form-label">City</label>
+              <input type="text" class="form-control" id="" placeholder="Type City" value="">
+            </div>
+            <div class="col-sm-6">
+              <label for="" class="form-label">Website</label>
+              <input type="text" class="form-control" id="" placeholder="Type Website" value="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="" class="col-sm-2 col-form-label">Status</label>
+        <div class="col-sm-3">
+          <select name="selectedStatus" formControlName="status" id="aantal" class="form-select">
+            <option *ngFor="let st of statusList" [value]="st">{{st}}</option>
+          </select>          
+        </div>
+       
+      </div>
+      <div class="mb-3 row">
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-primary">Submit</button> &nbsp;
+          <a routerLink="/company" class="btn btn-danger ">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="settingsFromSection">
+  <div class="topSection">
+    <a routerLink="add" class="TagBtn">Add Contacts</a>&nbsp;
+    <a class="TagBtn" (click)="openPopup()"><span>+</span> Add Tags</a>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="width: 30%">First Name</th>
+        <th style="width: 30%">Last Name</th>
+        <th style="width: 30%">Username</th>
+        <th style="width: 10%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contacts">
+        <td>{{contact.title}}</td>
+        <td>{{contact.name}}</td>
+        <td>{{contact.mobileNumber}}</td>
+        <td style="white-space: nowrap">
+          <a routerLink="edit/{{contact.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>&nbsp;
+          <button (click)="deleteUser(contact.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="contact.isDeleting">
+            <span *ngIf="contact.isDeleting" class="spinner-border spinner-border-sm"></span>
+            <span *ngIf="!contact.isDeleting">Delete</span>
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="!contacts">
+        <td colspan="4" class="text-center">
+          <span class="spinner-border spinner-border-lg align-center"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+<ng-template #addTag let-modal>
+  <div class="customModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Tags</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')" style="outline:0;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 row">
+          <div class="col-sm-12">
+            <input type="text" class="form-control" id="" placeholder="Type Tag Name" value="">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary submitBtn">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

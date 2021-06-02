@@ -1,0 +1,60 @@
+
+<main class="">
+
+  <div class="login-page registerPage">
+    <div class="login">
+      <h2 class="login-title animatedBounce">Create An Account</h2>
+      <p class="notice animatedBounce">Please fill the form below and get in</p>
+
+      <form class="form-login" [formGroup]="form" (ngSubmit)="onSubmit()">
+       
+        <label for="email">E-mail</label>
+        <div class="input-email animatedBounce">
+          <input type="email" name="email" placeholder="Type your e-mail" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">E-mail is required</div>
+          </div>
+        </div>
+
+        <div class="otherLogin">
+          <p class="animatedBounce"></p>
+          <div class="alterLoginList">
+            <ul>
+              <li><a style="cursor:pointer;" (click)="socialSignIn('google')"  class="animate_slideLeft"
+                     [ngStyle]="{'backgroundColor': socialProvider === 'google' ? '#fcdbb6' : '' }"><img src="./../../../assets/alt-icon-1.png" class="" alt=""></a></li>
+              <li><a style="cursor:pointer;" (click)="socialSignIn('LinkedIn')" class="animate_slideLeft delay1"
+                     [ngStyle]="{'backgroundColor': socialProvider === 'LinkedIn' ? '#fcdbb6' : '' }"><img src="./../../../assets/alt-icon-2.png" class="" alt=""></a></li>
+              <li><a style="cursor:pointer;" (click)="socialSignIn('recruiterbox')" class="animate_slideLeft delay2"
+                     [ngStyle]="{'backgroundColor': socialProvider === 'recruiterbox' ? '#fcdbb6' : '' }"><img src="./../../../assets/alt-icon-3.png" class="" alt=""></a></li>
+              <li><a style="cursor:pointer;" (click)="socialSignIn('office365')" class="animate_slideLeft delay3"
+                     [ngStyle]="{'backgroundColor': socialProvider === 'office365' ? '#fcdbb6' : '' }"><img src="./../../../assets/alt-icon-4.png" class="" alt=""></a></li>
+            </ul>
+          </div>
+        </div>
+
+
+        <button type="submit" class="animatedBounce">
+          Register Now
+          <i class="animated">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+            </svg>
+          </i>
+        </button>
+
+      </form>
+
+    
+      <div class="otherLinks signUpLink animatedBounce">
+        <p>Have you already an account? <a routerLink="/" class="forgotPassword">Sign In</a></p>
+      </div>
+
+
+    </div>
+    <div class="background register">
+      <h1>IMCS</h1>
+      <p>Lorem ipsum is simply dummy text ipsum is simply dummy text<br>ipsum is simply dummy text</p>
+    </div>
+  </div>
+
+</main>

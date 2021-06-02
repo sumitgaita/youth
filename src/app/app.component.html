@@ -1,0 +1,203 @@
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow" *ngIf="user">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" routerLink="/">IMCS</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <ul class="navbar-nav navActionBtn px-3">
+    <li class="nav-item text-nowrap dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="./../assets/user-alt.svg" class="img-fluid mx-auto d-block" alt="sign-out">
+        <p>John Doe</p>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </li>
+    <li class="nav-item text-nowrap ">
+      <a class="nav-item nav-link" style="cursor:pointer;" (click)="logout()"><img src="./../assets/power.svg" class="img-fluid mx-auto d-block" alt="sign-out"></a>
+    </li>
+  </ul>
+</header>
+
+<div class="container-fluid" *ngIf="user">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">
+              <span><img src="./../assets/dashboard.svg" class="img-fluid mx-auto d-block" alt=""></span>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span><img src="./../assets/briefcase.svg" class="img-fluid mx-auto d-block" alt=""></span>
+              Openings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span><img src="./../assets/id-card.svg" class="img-fluid mx-auto d-block" alt=""></span>
+              Candidates
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span><img src="./../assets/calendar.svg" class="img-fluid mx-auto d-block" alt=""></span>
+              Calendar
+            </a>
+          </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Other Links</span>
+
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span><img src="./../assets/search.svg" class="img-fluid mx-auto d-block" alt=""></span>
+              Search
+            </a>
+          </li>
+          <li class="nav-item">
+            <div class="accordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <span><img src="./../assets/settings.svg" class="img-fluid mx-auto d-block" alt=""></span>
+                    Settings
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <ul>
+                      <li><a style="cursor:pointer;text-decoration-line:none;" [class.active]="router.url==='/personal'" (click)="personalSettings()" >Personal Settings</a></li>
+                      <li><a style="cursor:pointer;text-decoration-line:none;" (click)="userSettings()" [class.active]="router.url==='/users'">User Settings</a></li>
+                      <li><a style="cursor:pointer;text-decoration-line:none;" (click)="companySettings()" [class.active]="router.url==='/company'">Company Settings</a></li>
+                      <li><a style="cursor:pointer;text-decoration-line:none;" (click)="ContactsSettings()" [class.active]="router.url==='/contacts'">Contacts Settings</a></li>
+                      <li><a style="cursor:pointer;" (click)="interviewsReviews()">Interviews and Reviews</a></li>
+                      <li><a style="cursor:pointer;" (click)="openingsConfigurations()">Openings Configurations</a></li>
+                      <li><a style="cursor:pointer;" (click)="candidatesConfigurations()">Candidates Configurations</a></li>
+                      <li><a style="cursor:pointer;" (click)="jobBoardsPublishing()">Job Boards &amp; Publishing</a></li>
+                      <li><a style="cursor:pointer;" (click)="plansPayments()">Plans &amp; Payments</a></li>
+                      <li><a style="cursor:pointer;" (click)="advancedSettings()">Advanced Settings</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span><img src="./../assets/bar-chart.svg" class="img-fluid mx-auto d-block" alt=""></span>
+              Graph
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span><img src="./../assets/information.svg" class="img-fluid mx-auto d-block" alt=""></span>
+              Info
+            </a>
+          </li>
+        </ul>
+
+
+
+
+
+
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="dashboardBody">
+
+        <div class="settingPanel">
+          <div class="contentList" *ngIf="ispersonalSettings">
+            <h1 class="headerTitle">&nbsp;&nbsp;</h1>
+            <ul>
+              <li>
+                <div class="iconArea">
+                  <img src="./../assets/information.svg" class="img-fluid mx-auto d-block" alt="">
+                </div>
+                <div class="txtArea">
+                  <h4><a (click)="profilePassword()">Profile Password</a></h4>
+                  <p>Change your name, timezone &amp; password</p>
+                </div>
+              </li>
+              <li>
+                <div class="iconArea">
+                  <img src="./../assets/information.svg" class="img-fluid mx-auto d-block" alt="">
+                </div>
+                <div class="txtArea">
+                  <h4><a href="#">Email Notifications</a></h4>
+                  <p>Change your name, timezone &amp; password</p>
+                </div>
+              </li>
+              <li>
+                <div class="iconArea">
+                  <img src="./../assets/information.svg" class="img-fluid mx-auto d-block" alt="">
+                </div>
+                <div class="txtArea">
+                  <h4>Email Templates</h4>
+                  <p>Change your name, timezone &amp; password</p>
+                </div>
+              </li>
+              <li>
+                <div class="iconArea">
+                  <img src="./../assets/information.svg" class="img-fluid mx-auto d-block" alt="">
+                </div>
+                <div class="txtArea">
+                  <h4>Out of Office Responder</h4>
+                  <p>Change your name, timezone &amp; password</p>
+                </div>
+              </li>
+              <li>
+                <div class="iconArea">
+                  <img src="./../assets/information.svg" class="img-fluid mx-auto d-block" alt="">
+                </div>
+                <div class="txtArea">
+                  <h4>Connect Email Account</h4>
+                  <p>Change your name, timezone &amp; password</p>
+                </div>
+              </li>
+              <li>
+                <div class="iconArea">
+                  <img src="./../assets/information.svg" class="img-fluid mx-auto d-block" alt="">
+                </div>
+                <div class="txtArea">
+                  <h4>Sync Calendar</h4>
+                  <p>Change your name, timezone &amp; password</p>
+                </div>
+              </li>
+              <li>
+                <div class="iconArea">
+                  <img src="./../assets/information.svg" class="img-fluid mx-auto d-block" alt="">
+                </div>
+                <div class="txtArea">
+                  <h4>App Preferences</h4>
+                  <p>Change your name, timezone &amp; password</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- main app container -->
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+  <alert></alert>
+  <router-outlet></router-outlet>
+</div>
+

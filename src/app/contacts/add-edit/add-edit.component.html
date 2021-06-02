@@ -1,0 +1,101 @@
+<h6 *ngIf="isAddMode">Add Contacts</h6>
+<h6 *ngIf="!isAddMode">Edit Contacts</h6>
+
+<div class="settingsFromSection">
+
+  <div class="formArea">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3 row">
+        <label for="" class="col-sm-2 col-form-label">Title</label>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <select name="selectedtitle" formControlName="title" id="aantal" class="form-select">
+              <option *ngFor="let st of titleList" [value]="st">{{st}}</option>
+            </select>
+          </div>
+        </div>
+        <label for="" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input type="number" class="form-control" placeholder="Name">
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="" class="col-sm-2 col-form-label">Mobile Number</label>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">+91</span>
+            <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
+          </div>
+        </div>
+        <label for="" class="col-sm-2 col-form-label">Office Number</label>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">+91</span>
+            <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="" class="col-sm-2 col-form-label">Home Number</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" id="" placeholder="Type Company Name" value="">
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="" class="col-sm-2 col-form-label">Office Email Address</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" id="" placeholder="Type Email Id" value="">
+        </div>
+        <label for="" class="col-sm-2 col-form-label">Alternate Email Address</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" id="" placeholder="Type Email Id" value="">
+        </div>
+      </div>
+      <hr>
+      <div class="mb-3 row">
+        <div class="col-sm-3">
+          <label for="" class="form-label">Current Company</label>
+          <input type="text" class="form-control" id="" placeholder="Type Country" value="">
+        </div>
+        <div class="col-sm-6">
+          <div class="mb-3 row">
+            <div class="col-sm-6">
+              <label for="" class="form-label">Designation</label>
+              <input type="text" class="form-control" id="" placeholder="Type Country" value="">
+            </div>
+            <div class="col-sm-6">
+              <label for="" class="form-label">Preferred Mode of Contact</label>
+              <input type="text" class="form-control" id="" placeholder="Type State" value="">
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <div class="col-sm-3">
+          <label for="" class="form-label">Preferred time to Contact</label>
+          <select name="selectedpreferredtime" formControlName="preferredtime" id="aantal" class="form-select">
+            <option *ngFor="let pt of preferredtimeList" [value]="pt">{{pt}}</option>
+          </select>
+        </div>
+        <div class="col-sm-3">
+          <label for="" class="form-label">Primary Owner</label>
+          <input type="text" class="form-control" id="" placeholder="Type Website" value="">
+        </div>
+        <div class="col-sm-3">
+          <label for="" class="form-label">Ownership</label>
+          <input type="text" class="form-control" id="" placeholder="Type Website" value="">
+        </div>
+      </div>
+      
+      <div class="mb-3 row">
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-primary">Submit</button> &nbsp;
+          <a routerLink="/contacts" class="btn btn-danger ">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

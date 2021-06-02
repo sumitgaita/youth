@@ -1,0 +1,32 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="dashboardBody">
+
+    <div class="settingPanel">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="headerTitle">User Settings</h1>
+        <div class="col-md-4 titleActionArea">
+          <div class="col-md-8 px-md-2">
+            <div class="searchBox">
+              <input class="form-control searchCandidate" type="text" placeholder="Search" aria-label="Search">
+              <a href="#" class=""><img src="./../assets/loupe.svg" class="img-fluid " alt="icon"></a>
+            </div>
+          </div>
+          <button type="button" class="col-md-4 btn btn-sm btn-outline-secondary dropdown-toggle actionBtn" id="dropdownActionDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            Action
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="contentList">
+        <router-outlet></router-outlet>
+
+      </div>
+    </div>
+
+  </div>
+
+</main>

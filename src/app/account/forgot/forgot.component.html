@@ -1,0 +1,38 @@
+<main class="">
+  <div class="login-page">
+    <div class="login">
+      <h2 class="login-title animatedBounce">Forgot Password?</h2>
+      <p class="notice animatedBounce">A verification link will be sent to your registered email id.</p>
+      <form class="form-login" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <label for="email">E-mail</label>
+        <div class="input-email animatedBounce">
+          <i class="fa fa-envelope-o" aria-hidden="true"></i>
+          <input type="email" name="email" formControlName="email" placeholder="Type your e-mail" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">E-mail is required</div>
+          </div>
+        </div>
+        <button type="submit" class="animatedBounce">
+          Send
+          <i class="animated">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+            </svg>
+          </i>
+        </button>
+      </form>
+
+
+      <div class="otherLinks signUpLink animatedBounce">
+        <p>Back to <a routerLink="/" class="forgotPassword">Login</a></p>
+      </div>
+
+
+    </div>
+    <div class="background">
+      <h1>IMCS</h1>
+      <p>Lorem ipsum is simply dummy text ipsum is simply dummy text<br>ipsum is simply dummy text</p>
+    </div>
+  </div>
+
+</main>
