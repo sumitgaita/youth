@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
+import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { AccountService, AlertService } from '@app/_services';
 
 @Component({
@@ -11,25 +11,32 @@ import { AccountService, AlertService } from '@app/_services';
   styleUrls: ['./add-edit.component.less']
 })
 export class AddEditComponent implements OnInit {
-
+  @ViewChild('addTag') addTag: NgbModal;
+  modalOptions: NgbModalOptions;
+  closeResult: string;
   form: FormGroup;
   id: string;
   isAddMode: boolean;
   loading = false;
   submitted = false;
   statusList: string[] = ['Active', 'Closed'];
+  addAddressRow: Array<any> = [];
+  newAddressRow: any = {};
+  addEmailRow: Array<any> = [];
+  newEmailRow: any = {};
+  companyName: string;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
-
     // password not required in edit mode
     const passwordValidators = [Validators.minLength(6)];
     if (this.isAddMode) {
@@ -41,14 +48,18 @@ export class AddEditComponent implements OnInit {
       //lastName: ['', Validators.required],
       //username: ['', Validators.required],
       //password: ['', passwordValidators]
-      status:['', Validators.required]
+      status: ['', Validators.required]
     });
 
     if (!this.isAddMode) {
-      this.accountService.getById(this.id)
-        .pipe(first())
-        .subscribe(x => this.form.patchValue(x));
+      //this.accountService.getById(this.id)
+      //  .pipe(first())
+      //  .subscribe(x => this.form.patchValue(x));
     }
+    this.newAddressRow = { address: '', city: '', state: '', country: '' };
+    this.addAddressRow.push(this.newAddressRow);
+    this.newEmailRow = { primaryEmail: '', secondaryEmail: '' };
+    this.addEmailRow.push(this.newAddressRow);
   }
 
   // convenience getter for easy access to form fields
@@ -101,6 +112,56 @@ export class AddEditComponent implements OnInit {
           this.loading = false;
         }
       });
+  }
+
+  openPopup() {
+    this.openModel(this.addTag);
+  }
+
+  addAddressListRow() {
+    this.newAddressRow = { address: '', city: '', state: '', country: '' };
+    this.addAddressRow.push(this.newAddressRow);
+    return true;
+  }
+
+  deleteAddressRow(index) {
+    if (this.addAddressRow.length == 1) {
+      return false;
+    } else {
+      this.addAddressRow.splice(index, 1);
+      return true;
+    }
+  }
+  addEmailListRow() {
+    this.newEmailRow = { primaryEmail: '', secondaryEmail: '' };
+    this.addEmailRow.push(this.newEmailRow);
+    return true;
+  }
+
+  deleteEmailRow(index) {
+    if (this.addEmailRow.length == 1) {
+      return false;
+    } else {
+      this.addEmailRow.splice(index, 1);
+      return true;
+    }
+  }
+  private openModel(content) {
+    this.modalService.open(content, { centered: true, backdrop: "static", size: "lg" }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
 }

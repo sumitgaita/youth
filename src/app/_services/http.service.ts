@@ -75,7 +75,6 @@ export class HttpService {
         this.onError(error, url);
       });
   }
-  
 
   getLoginToken<T>(username: string, password: string): Observable<T> {
     const body = new HttpParams()

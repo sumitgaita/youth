@@ -136,7 +136,7 @@ button:hover, button:focus, button:active {
   font-size: .875rem;
   font-weight: 500;
   color: #90a8bd;
-  background-color: transparent;
+  background-color: #212529;
   border-radius: 0px;
   box-shadow: none;
   outline: none;
@@ -298,6 +298,7 @@ button:hover, button:focus, button:active {
 
 .titleActionArea {
   display: flex;
+  justify-content: flex-end;
 }
 
 .searchCandidate {
@@ -313,6 +314,7 @@ button:hover, button:focus, button:active {
 
 .searchBox .form-control {
   padding-right: 30px;
+  padding: 0.5rem 30px 0.5rem 0.75rem;
 }
 
 .searchBox a {
@@ -398,14 +400,15 @@ button:hover, button:focus, button:active {
 
 a.TagBtn {
   display: inline-block;
-  padding: .65rem 1rem;
-  font-size: .75rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 1rem;
   border-radius: 4px;
   color: #fff;
   background: #233f57;
   font-weight: 500;
   text-transform: uppercase;
   text-decoration: none;
+  cursor: pointer;
 }
 
 a.TagBtn span {
@@ -518,7 +521,306 @@ main {
   }
 
 
-  /************* Media **********/
+  
+
+.companynamecell {
+  cursor: pointer;
+  text-decoration-line: none;
+}
+/*--------- Color Theme ------*/
+
+.bg-red {
+  background-color: #f36774 !important;
+}
+
+.bg-yellow {
+  background-color: #ffc107 !important;
+}
+
+.bg-green {
+  background-color: #44bf47 !important;
+}
+
+.bg-blue {
+  background-color: #11ace6 !important;
+}
+
+.bg-orange {
+  background-color: #ff8731 !important;
+}
+
+.bg-purple {
+  background-color: #6f45d6 !important;
+}
+.bg-fb {
+  background-color: #4b69b1 !important;
+}
+.bg-insta {
+  background-color: #4d3da8 !important;
+}
+.bg-linkedIn {
+  background-color: #0678b6 !important;
+}
+
+a.TagBtn:hover, button.submitBtn:hover {
+  background: #0fa5de !important;
+}
+/**/
+.accordion .card {
+  padding: 0;
+  border:none;
+}
+
+.accordion .card-header {
+  padding: 0;
+  border: none;
+}
+
+.accordion button {
+  color: #fff;
+  background-color: #212529;
+  box-shadow: none;
+  width: 100%;
+  border-radius: 0;
+  text-align: left;
+  text-decoration: none;
+  position: relative;
+  color: #90a8bd;
+  font-weight: 500;
+}
+
+.accordion button:not(.collapsed) {
+  background-color: #1c354a;
+}
+
+.accordion button:hover {
+  color: #fff;
+  background-color: #1c354a;
+}
+
+.accordion button.collapsed ::after {
+  content: "\f106";
+  font: normal normal normal 14px/1 FontAwesome;
+  text-rendering: auto;
+  position: absolute;
+  right: 17px;
+  top: 5px;
+  font-size: 30px;
+}
+.accordion button:not(.collapsed)::after {
+  content: "\f107";
+  font: normal normal normal 14px/1 FontAwesome;
+  text-rendering: auto;
+  position: absolute;
+  right: 17px;
+  top: 5px;
+  font-size: 30px;
+}
+
+  .accordion button span {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .accordion button span img {
+    max-width: 20px;
+  }
+
+  .accordion .card-body {
+    padding: 0;
+  }
+  /**/
+.EditPageHeader {
+  width: 100%;
+  float: left;
+  padding: 10px 0 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e4e4e4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+  .EditPageHeader .backBtnArea {
+    width: 5%;
+    float: left;
+  }
+
+  .EditPageHeader .Header {
+    width: 90%;
+    float: left;
+  }
+
+  .EditPageHeader .tagBtnArea {
+    width: 5%;
+    float: left;
+    text-align: right;
+  }
+
+.EditPageHeader .Header h6 {
+  font-size: 1rem;
+  color: #000;
+  margin: 0px;
+}
+
+  .EditPageHeader .Header h6 span {
+    float: right;
+    text-align: center;
+    font-size: 1.15em;
+    width: 80%;
+  }
+
+  a.TagBtn.deleteBtn {
+    width: auto;
+    float: right;
+  }
+
+  a.TagBtn.addBtn {
+    width: auto;
+    float: right;
+  }
+
+  .settingsFromSection .formArea {
+    border: none;
+    padding: 0px;
+  }
+
+.formSection {
+  width: 100%;
+  float: left;
+  padding: 25px 20px 15px;
+  border: 1px solid #cad7e2;
+  position: relative;
+  margin-top: 10px;
+}
+
+  .formSection h4.sectionTitle {
+    font-size: 0.75em;
+    color: #6d91af;
+    line-height: 1em;
+    padding: 5px 10px;
+    background: #fff;
+    position: absolute;
+    left: 10px;
+    top: -10px;
+    margin: 0;
+  }
+
+  .formSubmitArea {
+    width: 100%;
+    float: left;
+    padding: 15px 0;
+  }
+
+  .editBtn {
+    display: inline-block;
+    font-size: 0.65rem;
+    padding: 0.25em 0.65em;
+    border-radius: 6px;
+    color: #fff;
+    margin-right: 5px;
+    background: #ff9439;
+    line-height: 16px;
+  }
+
+  .ag-theme-balham .ag-row.ag-row-even {
+    background-color: #e6edf3;
+    border-color: #e6edf3;
+  }
+
+  .ag-theme-balham .ag-row {
+    border-color: #e6edf3;
+  }
+
+  .ag-header-group-cell-label, .ag-header-cell-label {
+    font-size: 1.1em;
+    color: #1c354a;
+  }
+
+  .ag-theme-balham .ag-cell, .ag-theme-balham .ag-full-width-row .ag-cell-wrapper.ag-row-group {
+    line-height: 34px;
+  }
+
+  .ag-theme-balham .ag-root-wrapper {
+    border: solid 1px;
+    border-color: #bdc3c7;
+    border-color: #ced4da;
+    border-radius: 4px;
+  }
+
+  .socialfootprint {
+    display: inline-flex;
+    margin: 0px;
+    padding: 8px;
+    border: 2px solid #423c36;
+    border-radius: 100px;
+  }
+
+  .ng-select.custom {
+    border: 0px;
+    min-height: 0px;
+    border-radius: 0;
+  }
+
+  .ng-select.custom .ng-select-container {
+    min-height: 0px;
+    border-radius: 0;
+  }
+
+  .ng-select.custom ::ng-deep .ng-select-container {
+    min-height: 0px;
+    border-radius: 0;
+  }
+
+  ng-select.ng-invalid.ng-touched .ng-select-container {
+    border-color: #dc3545;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px #fde6e8;
+  }
+
+
+.sidebar .accordion-button,
+.sidebar .accordion button {
+  padding: 0.75rem 1rem;
+  border: none;
+  font-size: .875rem;
+  font-weight: 500;
+  background-color: #233f57;
+  border-radius: 0px;
+  box-shadow: none;
+  outline: none;
+}
+.accordion button span {
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: top;
+}
+
+.companyheader .companyActionDropdown {
+  width: 100%;
+  float: left;
+  display: flex;
+  align-items: center;
+}
+.companyActionDropdown .headerTitle {
+    margin-right:15px;
+}
+.companyActionDropdown {
+  width: 20%;
+  float: left;
+}
+.companyActionDropdown .form-select{
+    width:auto;
+}
+
+
+
+
+
+
+/************* Media **********/
+@media only screen and (max-width: 1366px) {
+}
+
   @media (max-width: 767.98px) {
     .sidebar {
       top: 0;
@@ -528,3 +830,5 @@ main {
       padding-right: 60px !important;
     }
   }
+
+

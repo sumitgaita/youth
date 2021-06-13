@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
+//import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { AccountService, AlertService } from '@app/_services';
 
 @Component({
@@ -16,7 +16,12 @@ export class AddEditComponent implements OnInit {
   isAddMode: boolean;
   loading = false;
   submitted = false;
-
+  roleList: string[] = ['Administrator', 'Account Manager', 'HR Manager'];
+  teamsList: string[] = ['AccountTeams', 'HRTeams', 'ManagerTeams'];
+  reportList = [];
+  //dropdownSettings: IDropdownSettings = {};
+  selectedReportList = [];
+  addCustomUser = '';
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -28,7 +33,15 @@ export class AddEditComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
-
+    //this.dropdownSettings = {
+    //  singleSelection: false,
+    //  idField: 'item_id',
+    //  textField: 'item_text',
+    //  selectAllText: 'Select All',
+    //  unSelectAllText: 'UnSelect All',
+    //  itemsShowLimit: 10,
+    //  allowSearchFilter: true
+    //};
     // password not required in edit mode
     const passwordValidators = [Validators.minLength(6)];
     if (this.isAddMode) {
@@ -36,17 +49,26 @@ export class AddEditComponent implements OnInit {
     }
 
     this.form = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      role: [''],
+      teams: [''],
       username: ['', Validators.required],
       password: ['', passwordValidators]
     });
 
     if (!this.isAddMode) {
-      this.accountService.getById(this.id)
-        .pipe(first())
-        .subscribe(x => this.form.patchValue(x));
+      //this.accountService.getById(this.id)
+      //  .pipe(first())
+      //  .subscribe(x => this.form.patchValue(x));
     }
+    setTimeout(() => {
+    this.reportList = [
+      { item_id: 1, item_text: 'amit saha' },
+      { item_id: 2, item_text: 'anada sarma' },
+      { item_id: 3, item_text: 'anup gupta' },
+      { item_id: 4, item_text: 'Navsari' },
+      { item_id: 5, item_text: 'avik roy' }
+    ];
+    }, 500);
   }
 
   // convenience getter for easy access to form fields
@@ -99,5 +121,11 @@ export class AddEditComponent implements OnInit {
           this.loading = false;
         }
       });
+  }
+  onItemSelect(item: any) {
+    console.log('onItemSelect', item);
+  }
+  onSelectAll(items: any) {
+    console.log('onSelectAll', items);
   }
 }

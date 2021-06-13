@@ -1,6 +1,17 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\accesscontrol",
+    "\\src\\app\\accesscontrol\\list",
+    "\\src\\app\\company",
+    "\\src\\app\\company\\add-edit",
+    "\\src\\app\\company\\list",
+    "\\src\\app\\roles",
+    "\\src\\app\\users",
+    "\\src\\app\\users\\add-edit"
   ],
+  "SelectedNode": "\\src\\app\\app.component.html",
   "PreviewInSolutionExplorer": false
 }

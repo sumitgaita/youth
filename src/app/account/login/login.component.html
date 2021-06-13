@@ -8,7 +8,6 @@
       <form class="form-login" [formGroup]="form" (ngSubmit)="onSubmit()">
         <label for="email">E-mail</label>
         <div class="input-email animatedBounce">
-          <i class="fa fa-envelope-o" aria-hidden="true"></i>
           <input type="email" name="email" formControlName="username" placeholder="Type your e-mail" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
           <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
             <div *ngIf="f.username.errors.required">E-mail is required</div>
@@ -16,8 +15,7 @@
         </div>
         <label for="password">Password</label>
         <div class="input-password animatedBounce">
-          <i class="fa fa-lock" aria-hidden="true"></i>
-          <input type="password" name="password"formControlName="password" placeholder="Type your password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+          <input type="password" name="password" formControlName="password" placeholder="Type your password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
             <div *ngIf="f.password.errors.required">Password is required</div>
           </div>

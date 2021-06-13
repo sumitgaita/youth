@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 //import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { User } from '@app/_models';
 export class AccountService {
   private currentUserSubject: BehaviorSubject<User>;
     public user: Observable<User>;
-
+    static onEditUsersRow = new EventEmitter<any>();
     constructor(
         private router: Router,
        private http: HttpService

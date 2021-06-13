@@ -1,0 +1,29 @@
+<div class="settingPanel">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="headerTitle">Role</h1>
+    <div class="col-md-4 titleActionArea">
+      <div class="col-md-8 px-md-2">
+        <div class="searchBox">
+          <input class="form-control searchCandidate" type="text" placeholder="Search" aria-label="Search">
+          <a href="#" class=""><img src="./../assets/loupe.svg" class="img-fluid " alt="icon"></a>
+        </div>
+      </div>
+      <a routerLink="add" class="TagBtn bg-blue"><i class="fa fa-users" aria-hidden="true"></i></a>
+    </div>
+  </div>
+
+  <div class="settingsFromSection">
+
+    <ag-grid-angular [domLayout]="'autoHeight'"
+                     class="ag-theme-balham"
+                     [rowData]="roles"
+                     rowHeight="40"
+                     columnHeight="50"
+                     id="4"
+                     [pagination]="true"
+                     (gridReady)="onGridReady($event)"
+                     [paginationPageSize]="defaultPageSize"
+                     [columnDefs]="columnDefs">
+    </ag-grid-angular>
+  </div>
+</div>

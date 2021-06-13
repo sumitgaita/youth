@@ -6,62 +6,62 @@ import { User } from './_models';
 @Component({ selector: 'app', templateUrl: 'app.component.html', styleUrls: ['./app.component.less'] })
 export class AppComponent {
     user: User;
-  ispersonalSettings: boolean = false;
+  //ispersonalSettings: boolean = false;
   isActive: boolean = false;
   constructor(private accountService: AccountService,
     private router: Router) {
       this.accountService.user.subscribe(x => this.user = x);
-      this.ispersonalSettings = false;
+      //this.ispersonalSettings = false;
     }
 
     logout() {
       this.accountService.logout();
-      this.ispersonalSettings = false;
+      //this.ispersonalSettings = false;
     }
-  personalSettings() {
-    this.ispersonalSettings = true;
-    this.isActive = true;
-    this.router.navigate(['/']);
-  }
+  //personalSettings() {
+  //  //this.ispersonalSettings = true;
+  //  this.isActive = true;
+  //  this.router.navigate(['/']);
+  //}
   userSettings() {
-    this.ispersonalSettings = false;
+    //this.ispersonalSettings = false;
 
     this.router.navigate(['/users']);
   }
   companySettings() {
-    this.ispersonalSettings = false;
+    //this.ispersonalSettings = false;
     this.router.navigate(['/company']);
   }
   ContactsSettings() {
-    this.ispersonalSettings = false;
+    //this.ispersonalSettings = false;
     this.router.navigate(['/contacts']);
   }
-  interviewsReviews() {
-    this.ispersonalSettings = false;
-    this.router.navigate(['/']);
+  rolesSettings() {
+    //this.ispersonalSettings = false;
+    this.router.navigate(['/roles']);
   }
-  openingsConfigurations() {
-    this.ispersonalSettings = false;
-    this.router.navigate(['/']);
+  accessControl() {
+    //this.ispersonalSettings = false;
+    this.router.navigate(['/accesscontrol']);
   }
-  candidatesConfigurations() {
-    this.ispersonalSettings = false;
-    this.router.navigate(['/']);
+  team() {
+    //this.ispersonalSettings = false;
+    this.router.navigate(['/team']);
   }
-  jobBoardsPublishing() {
-    this.ispersonalSettings = false;
-    this.router.navigate(['/']);
+  talent() {
+    //this.ispersonalSettings = false;
+    this.router.navigate(['/talent']);
   }
-  plansPayments() {
-    this.ispersonalSettings = false;
-    this.router.navigate(['/']);
-  }
-  advancedSettings() {
-    this.ispersonalSettings = false;
-    this.router.navigate(['/']);
-  }
+  //plansPayments() {
+  //  //this.ispersonalSettings = false;
+  //  this.router.navigate(['/']);
+  //}
+  //advancedSettings() {
+  //  //this.ispersonalSettings = false;
+  //  this.router.navigate(['/']);
+  //}
   profilePassword() {
-    this.ispersonalSettings = false;
+    //this.ispersonalSettings = false;
     this.router.navigate(['/']);
 
   }

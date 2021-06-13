@@ -1,31 +1,29 @@
+<div class="settingPanel">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="headerTitle">User</h1>
+    <div class="col-md-4 titleActionArea">
+      <div class="col-md-8 px-md-2">
+        <div class="searchBox">
+          <input class="form-control searchCandidate" type="text" placeholder="Search" aria-label="Search">
+          <a href="#" class=""><img src="./../assets/loupe.svg" class="img-fluid " alt="icon"></a>
+        </div>
+      </div>
+      <a routerLink="add" class="TagBtn bg-blue"><i class="fa fa-users" aria-hidden="true"></i></a>
+    </div>
+  </div>
 
-<a routerLink="add" class="btn btn-sm btn-success mb-2">Add User</a>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th style="width: 30%">First Name</th>
-      <th style="width: 30%">Last Name</th>
-      <th style="width: 30%">Username</th>
-      <th style="width: 10%"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{user.firstName}}</td>
-      <td>{{user.lastName}}</td>
-      <td>{{user.username}}</td>
-      <td style="white-space: nowrap">
-        <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>&nbsp;
-        <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
-          <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
-          <span *ngIf="!user.isDeleting">Delete</span>
-        </button>
-      </td>
-    </tr>
-    <tr *ngIf="!users">
-      <td colspan="4" class="text-center">
-        <span class="spinner-border spinner-border-lg align-center"></span>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <div class="settingsFromSection">
+
+    <ag-grid-angular [domLayout]="'autoHeight'"
+                     class="ag-theme-balham"
+                     [rowData]="users"
+                     rowHeight="40"
+                     columnHeight="50"
+                     id="2"
+                     [pagination]="true"
+                     (gridReady)="onGridReady($event)"
+                     [paginationPageSize]="defaultPageSize"
+                     [columnDefs]="columnDefs">
+    </ag-grid-angular>
+  </div>
+</div>

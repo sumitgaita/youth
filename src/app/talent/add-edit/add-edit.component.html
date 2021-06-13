@@ -1,0 +1,49 @@
+
+<div class="EditPageHeader">
+  <div class="backBtnArea"><a class="TagBtn bg-purple" routerLink="/talent"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
+  <div class="Header">
+    <h6 *ngIf="isAddMode">Add Talent </h6>
+    <h6 *ngIf="!isAddMode">Edit Talent </h6>
+  </div>
+</div>
+
+
+
+<div class="settingsFromSection">
+  <div class="formArea">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="formSection">
+        <h4 class="sectionTitle">Talent</h4>
+
+        <div class="mb-3 row">
+          <label for="" class="col-sm-2 col-form-label">Candidate Name</label>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <input type="text" class="form-control">
+            </div>
+          </div>          
+        </div>
+        <div class="mb-3 row">
+          <label for="" class="col-sm-2 col-form-label">Source</label>
+          <div class="col-sm-12">
+            <a class="TagBtn bg-purple" title="Internal DB"><i class="fa fa-database" aria-hidden="true"></i></a>&nbsp;&nbsp; <input type="checkbox" id="internalDB" name="Internal DB" value="internalDB">&nbsp;&nbsp;
+            <a class="TagBtn bg-blue" title="Monster"><i class="fa fa-optin-monster" aria-hidden="true"></i></a>&nbsp;&nbsp; <input type="checkbox" id="monster" name="Monster" value="monster">&nbsp;&nbsp;
+            <a class="TagBtn bg-purple" title="dice"><i class="fa fa-database" aria-hidden="true"></i></a>&nbsp;&nbsp; <input type="checkbox" id="dice" name="dice" value="dice">&nbsp;&nbsp;
+            <a class="TagBtn bg-purple" title="Indeed"><i class="fa fa-database" aria-hidden="true"></i></a>&nbsp;&nbsp;<input type="checkbox" id="indeed" name="indeed" value="indeed">&nbsp;&nbsp;
+            <a class="TagBtn bg-purple" title="CB"><i class="fa fa-database" aria-hidden="true"></i></a>&nbsp;&nbsp;<input type="checkbox" id="cB" name="cB" value="cB">
+          </div>
+         
+        </div>
+      </div>
+      <div class="formSubmitArea">
+        <div class="mb-3 row">
+          <div class="col-sm-12">
+            <button type="submit" *ngIf="isAddMode" class="btn btn-primary">Save</button> &nbsp;
+            <button type="submit" *ngIf="!isAddMode" class="btn btn-primary">Edit</button> &nbsp;
+            <button type="submit" *ngIf="!isAddMode" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,101 +1,285 @@
-<h6 *ngIf="isAddMode">Add Contacts</h6>
-<h6 *ngIf="!isAddMode">Edit Contacts</h6>
+
+<div class="EditPageHeader">
+  <div class="backBtnArea"><a class="TagBtn bg-purple" routerLink="/contacts"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
+  <div class="Header">
+    <h6 *ngIf="isAddMode">Add Contacts </h6>
+    <h6 *ngIf="!isAddMode">Edit Contacts </h6>
+  </div>
+  <div class="tagBtnArea">
+    <a class="TagBtn bg-blue" (click)="openPopup()"><i class="fa fa-tag" aria-hidden="true"></i></a>
+  </div>
+</div>
+
+
 
 <div class="settingsFromSection">
 
   <div class="formArea">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="mb-3 row">
-        <label for="" class="col-sm-2 col-form-label">Title</label>
-        <div class="col-sm-3">
-          <div class="input-group">
-            <select name="selectedtitle" formControlName="title" id="aantal" class="form-select">
-              <option *ngFor="let st of titleList" [value]="st">{{st}}</option>
-            </select>
-          </div>
-        </div>
-        <label for="" class="col-sm-2 col-form-label">Name</label>
-        <div class="col-sm-3">
-          <div class="input-group">
-            <input type="number" class="form-control" placeholder="Name">
-          </div>
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="" class="col-sm-2 col-form-label">Mobile Number</label>
-        <div class="col-sm-3">
-          <div class="input-group">
-            <span class="input-group-text" id="basic-addon1">+91</span>
-            <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
-          </div>
-        </div>
-        <label for="" class="col-sm-2 col-form-label">Office Number</label>
-        <div class="col-sm-3">
-          <div class="input-group">
-            <span class="input-group-text" id="basic-addon1">+91</span>
-            <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
-          </div>
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="" class="col-sm-2 col-form-label">Home Number</label>
-        <div class="col-sm-3">
-          <input type="text" class="form-control" id="" placeholder="Type Company Name" value="">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="" class="col-sm-2 col-form-label">Office Email Address</label>
-        <div class="col-sm-3">
-          <input type="text" class="form-control" id="" placeholder="Type Email Id" value="">
-        </div>
-        <label for="" class="col-sm-2 col-form-label">Alternate Email Address</label>
-        <div class="col-sm-3">
-          <input type="text" class="form-control" id="" placeholder="Type Email Id" value="">
-        </div>
-      </div>
-      <hr>
-      <div class="mb-3 row">
-        <div class="col-sm-3">
-          <label for="" class="form-label">Current Company</label>
-          <input type="text" class="form-control" id="" placeholder="Type Country" value="">
-        </div>
-        <div class="col-sm-6">
-          <div class="mb-3 row">
-            <div class="col-sm-6">
-              <label for="" class="form-label">Designation</label>
-              <input type="text" class="form-control" id="" placeholder="Type Country" value="">
+      <div class="formSection">
+        <h4 class="sectionTitle">General</h4>
+        <div class="mb-3 row">
+          <label for="" class="col-sm-2 col-form-label">Title</label>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <select name="selectedtitle" formControlName="title" id="aantal" class="form-select">
+                <option *ngFor="let st of titleList" [value]="st">{{st}}</option>
+              </select>
             </div>
-            <div class="col-sm-6">
-              <label for="" class="form-label">Preferred Mode of Contact</label>
-              <input type="text" class="form-control" id="" placeholder="Type State" value="">
+          </div>
+          <label for="" class="col-sm-2 col-form-label">First Name</label>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="First Name">
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="" class="col-sm-2 col-form-label">Last Name</label>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Last Name">
+            </div>
+          </div>
+          <label for="" class="col-sm-2 col-form-label">Office Number</label>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <span class="input-group-text" id="basic-addon1">
+                <select name="countryCode" id="">
+                  <option data-countryCode="US" value="1">USA (+1)</option>
+                  <option data-countryCode="CA" value="1">Canada (+1)</option>
+                  <option data-countryCode="MX" value="52">Mexico (+52)</option>
+                </select>
+              </span>
+              <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="" class="col-sm-2 col-form-label">Home Number</label>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <span class="input-group-text" id="basic-addon1">
+                <select name="countryCode" id="">
+                  <option data-countryCode="US" value="1">USA (+1)</option>
+                  <option data-countryCode="CA" value="1">Canada (+1)</option>
+                  <option data-countryCode="MX" value="52">Mexico (+52)</option>
+                </select>
+              </span>
+              <input type="text" class="form-control" id="" placeholder="ex. 98xxx 125xx" value="">
+            </div>
+          </div>
+          <label for="" class="col-sm-2 col-form-label">Office Number</label>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <span class="input-group-text" id="basic-addon1">
+                <select name="countryCode" id="">
+                  <option data-countryCode="US" value="1">USA (+1)</option>
+                  <option data-countryCode="CA" value="1">Canada (+1)</option>
+                  <option data-countryCode="MX" value="52">Mexico (+52)</option>
+                </select>
+              </span>
+              <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="" class="col-sm-2 col-form-label">Office Email Address</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" id="" placeholder="Office Email Address" value="">
+          </div>
+          <label for="" class="col-sm-2 col-form-label">Alternate Email Address</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" id="" placeholder="Alternate Email Address" value="">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="" class="col-sm-3 col-form-label">Personal Home address</label>
+          <div class="col-sm-12">
+            <textarea class="form-control"  id="" rows="3" placeholder="Personal Home address"></textarea>
+          </div>
+         
+        </div>
+      </div>
+      <div class="formSection">
+        <h4 class="sectionTitle">Company</h4>
+        <div class="mb-3 row">
+          <div class="col-sm-3">
+            <label for="" class="form-label">Current Company</label>
+            <input type="text" class="form-control" id="" placeholder="Current Company" value="">
+          </div>
+        </div>
+        <div class="mb-3 row">         
+          <div class="col-sm-6">
+            <label for="" class="form-label">Address</label>
+            <textarea class="form-control"  id="" rows="5"></textarea>
+          </div>
+          <div class="col-sm-6">
+            <div class="mb-3 row">
+              <div class="col-sm-6">
+                <label for="" class="form-label">City</label>
+                <input type="text" class="form-control" id=""  placeholder="Type City" value="">
+              </div>
+              <div class="col-sm-6">
+                <label for="" class="form-label">State</label>
+                <input type="text" class="form-control" id="" placeholder="Type State" value="">
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <div class="col-sm-6">
+                <label for="" class="form-label">Country</label>
+                <input type="text" class="form-control" id=""  placeholder="Type Country" value="">
+              </div>
             </div>
           </div>
 
         </div>
+        <!--<div class="mb-3 row">
+    <label for="" class="col-sm-3 col-form-label">Company Details</label>
+    <div class="col-sm-12">
+      <textarea class="form-control" id="" rows="5" placeholder="Company Details"></textarea>
+    </div>
+
+  </div>-->
       </div>
-      <div class="mb-3 row">
-        <div class="col-sm-3">
-          <label for="" class="form-label">Preferred time to Contact</label>
-          <select name="selectedpreferredtime" formControlName="preferredtime" id="aantal" class="form-select">
-            <option *ngFor="let pt of preferredtimeList" [value]="pt">{{pt}}</option>
-          </select>
+      <div class="formSection">
+        <h4 class="sectionTitle">Connections</h4>
+        <div class="mb-3 row">
+          <div class="col-sm-4">
+            <label for="" class="form-label">Name</label>
+            <input type="text" class="form-control" id="" placeholder="Name" value="">
+          </div>
+          <div class="col-sm-8">
+            <div class="mb-3 row">
+              <div class="col-sm-6">
+                <label for="" class="form-label">Designation</label>
+                <input type="text" class="form-control" id="" placeholder="Type Country" value="">
+              </div>
+              <div class="col-sm-6">
+                <label for="" class="form-label">Preferred Mode of Contact</label>
+                <select name="selectedpreferredtime" formControlName="preferredMode" id="aantal" class="form-select">
+                  <option *ngFor="let pt of preferredModeList" [value]="pt">{{pt}}</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
         </div>
-        <div class="col-sm-3">
-          <label for="" class="form-label">Primary Owner</label>
-          <input type="text" class="form-control" id="" placeholder="Type Website" value="">
-        </div>
-        <div class="col-sm-3">
-          <label for="" class="form-label">Ownership</label>
-          <input type="text" class="form-control" id="" placeholder="Type Website" value="">
+        <div class="mb-3 row">
+          <div class="col-sm-4">
+            <label for="" class="form-label">Preferred time to Contact</label>
+            <select name="selectedpreferredtime" formControlName="preferredtime" id="aantal" class="form-select">
+              <option *ngFor="let pt of preferredtimeList" [value]="pt">{{pt}}</option>
+            </select>
+          </div>
+          <div class="col-sm-4">
+            <label for="" class="form-label">connections</label>
+            <select name="selectedpreferredtime" formControlName="connections" id="aantal" class="form-select">
+              <option *ngFor="let pt of connectionsList" [value]="pt">{{pt}}</option>
+            </select>
+          </div>
+          <div class="col-sm-4">
+            <label for="" class="form-label"></label>
+            <input type="text" class="form-control" id="" placeholder="Connections To" value="">
+          </div>
         </div>
       </div>
-      
-      <div class="mb-3 row">
-        <div class="col-sm-12">
-          <button type="submit" class="btn btn-primary">Submit</button> &nbsp;
-          <a routerLink="/contacts" class="btn btn-danger ">Cancel</a>
+      <div class="formSection">
+        <h4 class="sectionTitle">Social Footprint</h4>
+        <div class="mb-2 row">
+          <label for="" class="col-sm-1"><a class="TagBtn bg-linkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></label>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="linkedin">
+            </div>
+          </div>
+          <label for="" class="col-sm-1"><a class="TagBtn bg-fb"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></label>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="facebook">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="" class="col-sm-1"><a class="TagBtn bg-insta"><i class="fa fa-instagram" aria-hidden="true"></i></a></label>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="instagram">
+            </div>
+          </div>         
+        </div>
+
+      </div>
+      <div class="formSection">
+        <h4 class="sectionTitle">Activity</h4>
+        <a class="TagBtn bg-blue"><i class="fa fa-phone" aria-hidden="true"></i></a>&nbsp;&nbsp;
+        <a class="TagBtn bg-orange"><i class="fa fa-comments" aria-hidden="true"></i></a>&nbsp;&nbsp;
+        <a class="TagBtn bg-green"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>&nbsp;&nbsp;
+        <a class="TagBtn bg-yellow" (click)="openNotesPopup()"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></a>
+      </div>
+      <div class="formSubmitArea">
+        <div class="mb-3 row">
+          <div class="col-sm-12">
+            <button type="submit" *ngIf="isAddMode" class="btn btn-primary">Save</button> &nbsp;
+            <button type="submit" *ngIf="!isAddMode" class="btn btn-primary">Edit</button> &nbsp;
+            <button type="submit" *ngIf="!isAddMode" class="btn btn-danger">Delete</button>
+          </div>
         </div>
       </div>
     </form>
   </div>
 </div>
+
+
+
+<ng-template #addTag let-modal>
+  <div class="customModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Tags</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')" style="outline:0;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 row">
+          <div class="col-sm-12">
+            <input type="text" class="form-control" id="" placeholder="Type Tag Name" value="">
+          </div>
+        </div>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button> &nbsp;
+        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #addNotes let-modal>
+  <div class="customModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Notes</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')" style="outline:0;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 row">
+          <div class="col-sm-12">
+            <ckeditor [(ngModel)]="content" #ContractContent="ngModel" name="ContractContent" required
+                      [config]="ckeConfig" debounce="500">
+            </ckeditor>
+          </div>
+        </div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>&nbsp;
+        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

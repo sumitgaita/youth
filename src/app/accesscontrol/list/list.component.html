@@ -1,0 +1,93 @@
+<div class="settingPanel">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="headerTitle">Access Control</h1>
+    <div class="col-md-4 titleActionArea">
+      <div class="col-md-8 px-md-2">
+        <div class="searchBox">
+          <input class="form-control searchCandidate" type="text" placeholder="Search" aria-label="Search">
+          <a href="#" class=""><img src="./../assets/loupe.svg" class="img-fluid " alt="icon"></a>
+        </div>
+      </div>
+      <!--<a routerLink="add" class="TagBtn bg-blue"><i class="fa fa-users" aria-hidden="true"></i></a>-->
+    </div>
+  </div>
+
+
+  <div class="settingsFromSection">
+    <ag-grid-angular [domLayout]="'autoHeight'"
+                     class="ag-theme-balham"
+                     [rowData]="accesscontrols"
+                     rowHeight="40"
+                     columnHeight="50"
+                     id="4"
+                     [pagination]="true"
+                     (gridReady)="onGridReady($event)"
+                     [paginationPageSize]="defaultPageSize"
+                     [columnDefs]="columnDefs">
+    </ag-grid-angular>
+    
+  </div>
+
+</div>
+  <ng-template #addTag let-modal>
+    <div class="customModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">{{roleName}} Permission</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')" style="outline:0;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3 row">
+            <div class="col-sm-3">
+              <label for="" class="form-label">View</label>
+              <input type="checkbox" id="View" name="View" value="View">
+            </div>
+            <div class="col-sm-3">
+              <label for="" class="form-label">Add</label>
+              <input type="checkbox" id="Add" name="Add" value="Add">
+            </div>
+            <div class="col-sm-3">
+              <label for="" class="form-label">Edit</label>
+              <input type="checkbox" id="Edit" name="Edit" value="Edit">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-sm-3">
+              <label for="" class="form-label">View</label>
+              <input type="checkbox" id="View" name="View" value="View">
+            </div>
+            <div class="col-sm-3">
+              <label for="" class="form-label">Add</label>
+              <input type="checkbox" id="Add" name="Add" value="Add">
+            </div>
+            <div class="col-sm-3">
+              <label for="" class="form-label">Edit</label>
+              <input type="checkbox" id="Edit" name="Edit" value="Edit">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-sm-3">
+              <label for="" class="form-label">View</label>
+              <input type="checkbox" id="View" name="View" value="View">
+            </div>
+            <div class="col-sm-3">
+              <label for="" class="form-label">Add</label>
+              <input type="checkbox" id="Add" name="Add" value="Add">
+            </div>
+            <div class="col-sm-3">
+              <label for="" class="form-label">Edit</label>
+              <input type="checkbox" id="Edit" name="Edit" value="Edit">
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
