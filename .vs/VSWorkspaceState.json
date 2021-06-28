@@ -6,11 +6,11 @@
     "\\src\\app\\roles",
     "\\src\\app\\roles\\add-edit",
     "\\src\\app\\roles\\list",
-    "\\src\\app\\team",
-    "\\src\\app\\team\\add-edit",
     "\\src\\app\\team\\list",
+    "\\src\\app\\users",
+    "\\src\\app\\users\\add-edit",
     "\\src\\app\\users\\list"
   ],
-  "SelectedNode": "\\src\\app\\team\\list\\list.component.ts",
+  "SelectedNode": "\\src\\styles.less",
   "PreviewInSolutionExplorer": false
 }

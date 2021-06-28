@@ -707,10 +707,12 @@ a.TagBtn:hover, button.submitBtn:hover {
   float: left;
   text-align: right;
 }
+
 .EditPageHeader .tagBtnArea .btn,
-.EditPageHeader .tagBtnArea a.TagBtn{
+.EditPageHeader .tagBtnArea a.TagBtn {
   margin-left: 2px;
 }
+
 .EditPageHeader .Header h6 {
   font-size: 1rem;
   color: #000;
@@ -891,6 +893,7 @@ ng-select.ng-invalid.ng-touched .ng-select-container {
   background: #233f57;
   border-radius: 5px 5px 0 0;
   margin: 0px 2px 0 0;
+  opacity: 1 !important;
 }
 
 .mat-tab-label.mat-tab-label-active {
@@ -902,8 +905,9 @@ ng-select.ng-invalid.ng-touched .ng-select-container {
   background: #fff;
   color: #233f57;
 }
+
 .mat-tab-label, .mat-tab-link {
-  color: #90a8bd;
+  color: #fff;
 }
 
 .mat-tab-body-content {
@@ -951,7 +955,8 @@ ng-select.ng-invalid.ng-touched .ng-select-container {
 .tagDisplayArea .fa-tag {
   color: #ffc107;
 }
-.form-switch .form-check-input{
+
+.form-switch .form-check-input {
   border: 1px solid rgba(245,51,51,0.5);
   background-color: #ffd1d1;
 }
@@ -960,42 +965,52 @@ ng-select.ng-invalid.ng-touched .ng-select-container {
   background-color: #43c10e;
   border-color: #43c10e;
 }
+
 .ag-theme-balham .ag-row {
   cursor: pointer;
 }
-.ag-theme-balham .ag-header-row{
+
+.ag-theme-balham .ag-header-row {
   background: #233f57;
 }
+
 .ag-theme-balham .ag-header-row .ag-header-cell-text,
-.ag-theme-balham .ag-icon{
+.ag-theme-balham .ag-icon {
   color: #fff;
 }
-.ag-theme-balham .ag-root-wrapper{
+
+.ag-theme-balham .ag-root-wrapper {
   border-color: #cbd5de;
 }
-.ag-theme-balham .ag-paging-panel{
+
+.ag-theme-balham .ag-paging-panel {
   background: #cbd5de;
 }
-.ag-theme-balham .ag-paging-panel .ag-icon{
+
+.ag-theme-balham .ag-paging-panel .ag-icon {
   color: #233f57;
 }
+
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
   background-color: #e4e4e4;
 }
 
-a.buttonShape,.buttonShape{
+a.buttonShape, .buttonShape {
   width: 35px;
   height: 35px;
   border-radius: 4px;
 }
-a.buttonShape img,.buttonShape img{
+
+a.buttonShape img, .buttonShape img {
   border-radius: 4px;
 }
-.buttonShape.buttonGraphics{
+
+.buttonShape.buttonGraphics {
   background: #f5f3ef;
   padding: 8px;
 }
-.buttonShape.buttonGraphics:hover{
+
+.buttonShape.buttonGraphics:hover {
   background: #f5f3ef;
 }
 
@@ -1016,33 +1031,38 @@ a.buttonShape img,.buttonShape img{
   .navbar.sticky-top {
     padding-right: 60px !important;
   }
+
   .contentList {
     width: 100%;
     padding: 0 15px;
-}
-.titleActionArea {
-  width: 100%;
-  margin-top: 10px;
-}
-.titleActionArea .col-md-8{
-  width: 100%;
-}
-.EditPageHeader .backBtnArea {
-  width: 12%;
-}
-.EditPageHeader .Header {
-  width: 40%;
-}
-.EditPageHeader .tagBtnArea {
-  width: 50%;
-}
-.EditPageHeader .Header h6 span{
-  line-height: 35px;
-  font-size: 14px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: pre;
-}
+  }
 
-}
+  .titleActionArea {
+    width: 100%;
+    margin-top: 10px;
+  }
 
+  .titleActionArea .col-md-8 {
+    width: 100%;
+  }
+
+  .EditPageHeader .backBtnArea {
+    width: 12%;
+  }
+
+  .EditPageHeader .Header {
+    width: 40%;
+  }
+
+  .EditPageHeader .tagBtnArea {
+    width: 50%;
+  }
+
+  .EditPageHeader .Header h6 span {
+    line-height: 35px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
+  }
+}
