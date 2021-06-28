@@ -25,68 +25,61 @@ export class ListComponent implements OnInit, OnDestroy {
   {
     this.columnDefs = [
       {
-        headerName: 'First Name',
-        field: '',
+        headerName: 'Full Name',
+        field: 'fullName',
         width: 170,
-        tooltipField: 'firstName',
-        cellRenderer: function (param: any) {
-          if (param.data.id !== '') {
-            const eDiv = document.createElement('div');
-            let cellDef = '';
-            cellDef += `<a class='companynamecell'><span class='editBtn'><i class='fa fa-pencil' aria-hidden='true'></i></span> ${param.data.firstName}</a>`;
-            eDiv.innerHTML = cellDef;
-            if (eDiv.querySelector('.companynamecell')) {
-              eDiv.querySelector('.companynamecell').addEventListener('click', (ev: any) => {
-                ContactsService.onEditContactsRow.emit({ data: param.data });
-              })
-            }
-            return eDiv;
-          }
-        },
-        sortable: false
+        tooltipField: 'fullName',
+        sortable: true,
+        filter: true
       },
 
-      { headerName: 'Last Name', width: 170, tooltipField: 'lastName', field: 'lastName', sortable: true, filter: true },
-      { headerName: 'Company Name', width: 247, field: 'companyName', tooltipField: 'companyName', tooltipComponentParams: { color: '#ececec' }, sortable: true, filter: true },
-      { headerName: 'Email', width: 250, field: 'email', tooltipField: 'email', tooltipComponentParams: { color: '#ececec' }, sortable: true, filter: true },
-      { headerName: 'Phone', width: 250, tooltipField: 'phone', field: 'phone', sortable: true, filter: true }
+      { headerName: 'Company', width: 170, tooltipField: 'companyName', field: 'companyName', sortable: true, filter: true },
+      { headerName: 'Location', width: 247, field: 'location', tooltipField: 'location', tooltipComponentParams: { color: '#ececec' }, sortable: true, filter: true },
+      { headerName: 'Primary Phone Number', width: 250, field: 'primaryPhoneNumber', tooltipField: 'primaryPhoneNumber', tooltipComponentParams: { color: '#ececec' }, sortable: true, filter: true },
+      { headerName: 'Primary email Address', width: 250, tooltipField: 'primaryemailAddress', field: 'primaryemailAddress', sortable: true, filter: true }
     ];
   }
 
   ngOnInit() {
     
-    this.contacts = [{ id: '1', firstName: 'sumit', lastName: 'maity', companyName: 'ABC Company', email: 'ABC@gmail.com', phone: '0222-87544', isDeleting: false },
-      { id: '2', firstName: 'sumit', lastName: 'maity', companyName: 'ABC Company', email: 'ABC@gmail.com', phone: '0222-87544', isDeleting: false },
-      { id: '3', firstName: 'sumit', lastName: 'maity', companyName: 'ABC Company', email: 'ABC@gmail.com', phone: '0222-87544', isDeleting: false },
-      { id: '4', firstName: 'sumit', lastName: 'maity', companyName: 'ABC Company', email: 'ABC@gmail.com', phone: '0222-87544', isDeleting: false }];
-    this.setupSubscription();
+    this.contacts = [{ id: '1', fullName: 'sumit maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', isDeleting: false },
+      { id: '2', fullName: 'sumit maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', isDeleting: false },
+      { id: '3', fullName: 'sumit maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', isDeleting: false },
+      { id: '4', fullName: 'sumit maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', isDeleting: false }];
+    //this.setupSubscription();
   }
 
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.setDatasource(this.contacts);
-  }
-
-  ngOnDestroy() {
-    this.subscription.forEach(sub => {
-      sub.unsubscribe();
-    });
-    this.subscription = [];
-  }
-
-  setupSubscription() {
-    if (this.subscription.length === 0) {
-      this.subscription.push(ContactsService.onEditContactsRow.subscribe((item: any) => {
-        if (item) {
-          //this.router.navigate(['edit/1']);
-          this.router.navigate(['/contacts/edit/' + item.data.id]);
-
-        }
-      }));
+    this.gridApi.sizeColumnsToFit();
+    window.onresize = () => {
+      this.gridApi.sizeColumnsToFit();
     }
-
   }
+  onCellClicked(event: any) {
+    this.router.navigate(['/contacts/edit/' + event.data.id]);
+  }
+  ngOnDestroy() {
+    //this.subscription.forEach(sub => {
+    //  sub.unsubscribe();
+    //});
+    //this.subscription = [];
+  }
+
+  //setupSubscription() {
+  //  if (this.subscription.length === 0) {
+  //    this.subscription.push(ContactsService.onEditContactsRow.subscribe((item: any) => {
+  //      if (item) {
+  //        //this.router.navigate(['edit/1']);
+  //        this.router.navigate(['/contacts/edit/' + item.data.id]);
+
+  //      }
+  //    }));
+  //  }
+
+  //}
   deleteUser(id: string) {
     const user = this.contacts.find(x => x.id === id);
     user.isDeleting = true;

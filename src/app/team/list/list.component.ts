@@ -15,30 +15,10 @@ export class ListComponent implements OnInit, OnDestroy {
   private gridApi: any;
   private gridColumnApi: any;
   defaultPageSize = 10;
-  private subscription: Subscription[] = [];
+  //private subscription: Subscription[] = [];
   constructor(private accountService: AccountService, private teamService: TeamService, private router: Router) {
     this.columnDefs = [
-      {
-        headerName: '',
-        field: '',
-        width: 50,
-        tooltipField: '',
-        cellRenderer: function (param: any) {
-          if (param.data.id !== '') {
-            const eDiv = document.createElement('div');
-            let cellDef = '';
-            cellDef += `<a class='companynamecell'><span class='editBtn'><i class='fa fa-pencil' aria-hidden='true'></i></span></a>`;
-            eDiv.innerHTML = cellDef;
-            if (eDiv.querySelector('.companynamecell')) {
-              eDiv.querySelector('.companynamecell').addEventListener('click', (ev: any) => {
-                TeamService.onEditTeamRow.emit({ data: param.data });
-              })
-            }
-            return eDiv;
-          }
-        },
-        sortable: false
-      },
+     
       { headerName: 'Team Name', width: 500, tooltipField: 'teamName', field: 'teamName', sortable: true, filter: true },
       { headerName: 'User Name', width: 538, tooltipField: 'userName', field: 'userName', sortable: true, filter: true }
     ];
@@ -53,34 +33,40 @@ export class ListComponent implements OnInit, OnDestroy {
       { id: '2', teamName: 'arun das2', userName: 'ABC ABC2' },
       { id: '3', teamName: 'arun das3', userName: 'ABC ABC3' },
       { id: '4', teamName: 'arun das4', userName: 'ABC ABC4' }];
-    this.setupSubscription();
+   // this.setupSubscription();
   }
 
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.setDatasource(this.teams);
-  }
-
-  ngOnDestroy() {
-    this.subscription.forEach(sub => {
-      sub.unsubscribe();
-    });
-    this.subscription = [];
-  }
-
-  setupSubscription() {
-    if (this.subscription.length === 0) {
-      this.subscription.push(TeamService.onEditTeamRow.subscribe((item: any) => {
-        if (item) {
-          //this.router.navigate(['edit/1']);
-          this.router.navigate(['/team/edit/' + item.data.id]);
-
-        }
-      }));
+    this.gridApi.sizeColumnsToFit();
+    window.onresize = () => {
+      this.gridApi.sizeColumnsToFit();
     }
-
   }
+  onCellClicked(event: any) {
+    this.router.navigate(['/team/edit/' + event.data.id]);
+  }
+  ngOnDestroy() {
+    //this.subscription.forEach(sub => {
+    //  sub.unsubscribe();
+    //});
+    //this.subscription = [];
+  }
+
+  //setupSubscription() {
+  //  if (this.subscription.length === 0) {
+  //    this.subscription.push(TeamService.onEditTeamRow.subscribe((item: any) => {
+  //      if (item) {
+  //        //this.router.navigate(['edit/1']);
+  //        this.router.navigate(['/team/edit/' + item.data.id]);
+
+  //      }
+  //    }));
+  //  }
+
+  //}
   //deleteUser(id: string) {
   //  const user = this.users.find(x => x.id === id);
   //  user.isDeleting = true;

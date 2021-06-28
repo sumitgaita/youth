@@ -6,10 +6,17 @@ body {
 
 body {
   font-family: 'Open Sans', sans-serif;
+  /*font-family: Roboto, "Helvetica Neue", sans-serif;*/
   background-color: #ffffff;
   width: 100%;
   margin: 0px;
   font-size: .875rem;
+}
+
+.ag-paging-panel {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 a {
@@ -116,10 +123,14 @@ button:hover, button:focus, button:active {
   color: #727272;
 }
 
-.sidebar .nav-link.active,
 .sidebar .nav-link:hover {
   color: #fff;
   background-color: #1c354a;
+}
+
+.sidebar .nav-link.active {
+  background-color: #0fa5de;
+  color: #fff;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -433,6 +444,14 @@ a.TagBtn {
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
+  vertical-align: top;
+}
+
+.btn {
+  padding: 0.35rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
 }
 
 a.TagBtn span {
@@ -679,16 +698,19 @@ a.TagBtn:hover, button.submitBtn:hover {
 }
 
 .EditPageHeader .Header {
-  width: 90%;
+  width: 70%;
   float: left;
 }
 
 .EditPageHeader .tagBtnArea {
-  width: 5%;
+  width: 25%;
   float: left;
   text-align: right;
 }
-
+.EditPageHeader .tagBtnArea .btn,
+.EditPageHeader .tagBtnArea a.TagBtn{
+  margin-left: 2px;
+}
 .EditPageHeader .Header h6 {
   font-size: 1rem;
   color: #000;
@@ -696,10 +718,10 @@ a.TagBtn:hover, button.submitBtn:hover {
 }
 
 .EditPageHeader .Header h6 span {
-  float: right;
-  text-align: center;
+  float: left;
+  text-align: left;
   font-size: 1.15em;
-  width: 80%;
+  width: 100%;
 }
 
 a.TagBtn.deleteBtn {
@@ -863,6 +885,122 @@ ng-select.ng-invalid.ng-touched .ng-select-container {
 }
 
 
+/*---- Tab ----*/
+
+.mat-tab-label {
+  background: #233f57;
+  border-radius: 5px 5px 0 0;
+  margin: 0px 2px 0 0;
+}
+
+.mat-tab-label.mat-tab-label-active {
+  opacity: 1;
+  border-left: 1px solid #e4e4e4;
+  border-right: 1px solid #e4e4e4;
+  border-top: 1px solid #e4e4e4;
+  border-radius: 4px 4px 0 0;
+  background: #fff;
+  color: #233f57;
+}
+.mat-tab-label, .mat-tab-link {
+  color: #90a8bd;
+}
+
+.mat-tab-body-content {
+  height: 100%;
+  overflow: auto;
+  padding: 20px 20px 25px;
+  border-left: 1px solid #e4e4e4;
+  border-right: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+  border-radius: 0 0 5px 5px;
+}
+
+/**/
+
+.tagDisplayArea {
+  width: 100%;
+  float: left;
+  padding: 10px 15px;
+}
+
+.tagDisplayArea span.ng-star-inserted {
+  border-radius: 100px;
+  padding: 5px 2px 5px 10px;
+  border: 1px solid #cde4ec;
+  width: auto;
+  margin: 0 3px;
+  color: #0a131b;
+  background: #e7f4f9;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.tagDisplayArea span.ng-star-inserted a {
+  color: #2f5564;
+  font-weight: 200;
+  padding-left: 2px;
+  cursor: pointer;
+  opacity: 0.2;
+}
+
+.tagDisplayArea span.ng-star-inserted a:hover {
+  opacity: 0.7;
+}
+
+.tagDisplayArea .fa-tag {
+  color: #ffc107;
+}
+.form-switch .form-check-input{
+  border: 1px solid rgba(245,51,51,0.5);
+  background-color: #ffd1d1;
+}
+
+.form-check-input:checked {
+  background-color: #43c10e;
+  border-color: #43c10e;
+}
+.ag-theme-balham .ag-row {
+  cursor: pointer;
+}
+.ag-theme-balham .ag-header-row{
+  background: #233f57;
+}
+.ag-theme-balham .ag-header-row .ag-header-cell-text,
+.ag-theme-balham .ag-icon{
+  color: #fff;
+}
+.ag-theme-balham .ag-root-wrapper{
+  border-color: #cbd5de;
+}
+.ag-theme-balham .ag-paging-panel{
+  background: #cbd5de;
+}
+.ag-theme-balham .ag-paging-panel .ag-icon{
+  color: #233f57;
+}
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #e4e4e4;
+}
+
+a.buttonShape,.buttonShape{
+  width: 35px;
+  height: 35px;
+  border-radius: 4px;
+}
+a.buttonShape img,.buttonShape img{
+  border-radius: 4px;
+}
+.buttonShape.buttonGraphics{
+  background: #f5f3ef;
+  padding: 8px;
+}
+.buttonShape.buttonGraphics:hover{
+  background: #f5f3ef;
+}
+
+
+
 
 
 
@@ -878,4 +1016,33 @@ ng-select.ng-invalid.ng-touched .ng-select-container {
   .navbar.sticky-top {
     padding-right: 60px !important;
   }
+  .contentList {
+    width: 100%;
+    padding: 0 15px;
 }
+.titleActionArea {
+  width: 100%;
+  margin-top: 10px;
+}
+.titleActionArea .col-md-8{
+  width: 100%;
+}
+.EditPageHeader .backBtnArea {
+  width: 12%;
+}
+.EditPageHeader .Header {
+  width: 40%;
+}
+.EditPageHeader .tagBtnArea {
+  width: 50%;
+}
+.EditPageHeader .Header h6 span{
+  line-height: 35px;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+
+}
+

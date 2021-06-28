@@ -24,12 +24,16 @@ export class AddEditComponent implements OnInit {
   titleList: string[] = ['Mr.', 'Mrs'];
   preferredtimeList: string[] = ['Morning', 'Afternoon', 'Evening'];
   connectionsList: string[] = ['Related to', 'Referred by', 'Reports To'];
-  preferredModeList: string[] = ['Offical', 'Home', 'Mobile'];
+  preferredModePhoneList: string[] = ['Offical', 'Home', 'Mobile'];
+  preferredModeList: string[] = ['Phone', 'email'];
+  preferredModeEmailList: string[] = ['Personal', 'Offical'];
   @ViewChild('ContractContent') ContractContent: any;
   content: string;
   name = 'ng4-ckeditor';
   ckeConfig: any;
   mycontent: string;
+  taglist: Array<any> = [];
+  tagName: string;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -61,7 +65,9 @@ export class AddEditComponent implements OnInit {
       title: ['', Validators.required],
       preferredtime: [''],
       connections: [''],
-      preferredMode: ['']
+      preferredMode: [''],
+      preferredEmailMode: [''],
+      preferredPhoneMode: ['']
     });
 
     if (!this.isAddMode) {
@@ -91,6 +97,16 @@ export class AddEditComponent implements OnInit {
     } else {
       this.updateUser();
     }
+  }
+
+  addTagList() {
+    this.taglist.push(this.tagName);
+    this.modalService.dismissAll();
+  }
+  tagRemove(index: number) {
+    this.taglist.splice(index, 1);
+    return true;
+
   }
 
   private createUser() {
@@ -124,6 +140,7 @@ export class AddEditComponent implements OnInit {
   }
 
   openPopup() {
+    this.tagName = '';
     this.openModel(this.addTag);
   }
   openNotesPopup() {

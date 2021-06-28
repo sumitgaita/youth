@@ -6,223 +6,295 @@
     <h6 *ngIf="!isAddMode">Edit Contacts </h6>
   </div>
   <div class="tagBtnArea">
-    <a class="TagBtn bg-blue" (click)="openPopup()"><i class="fa fa-tag" aria-hidden="true"></i></a>
+    <button type="submit" *ngIf="isAddMode" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics">
+      <img src="./../assets/graphic_icon_save.jpg" class="img-fluid mx-auto d-block " />
+    </button>
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics">
+      <img src="./../assets/graphic_icon_delete.jpg" class="img-fluid mx-auto d-block " />
+    </button>
+    <a class="TagBtn bg-blue buttonShape" (click)="openPopup()"><i class="fa fa-tag" aria-hidden="true"></i></a>
   </div>
 </div>
 
 
 
 <div class="settingsFromSection">
-
-  <div class="formArea">
+  <div class="tagDisplayArea">
+    <div *ngIf="taglist?.length > 0">
+      <i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<span class="col-sd-4" *ngFor="let tag of taglist; let i = index;">{{tag}}&nbsp;<a (click)="tagRemove(i)"><i class="fa fa-times fa-1" aria-hidden="true"></i></a>&nbsp;&nbsp;</span>
+    </div>
+  </div>
+  <div class="formArea" [@.disabled]="true">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="formSection">
-        <h4 class="sectionTitle">General</h4>
-        <div class="mb-3 row">
-          <label for="" class="col-sm-2 col-form-label">Title</label>
-          <div class="col-sm-4">
-            <div class="input-group">
-              <select name="selectedtitle" formControlName="title" id="aantal" class="form-select">
-                <option *ngFor="let st of titleList" [value]="st">{{st}}</option>
+      <mat-tab-group>
+
+        <mat-tab label="General">
+          <!--<div class="formSection">
+          <h4 class="sectionTitle">General</h4>-->
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Title</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <select name="selectedtitle" formControlName="title" id="aantal" class="form-select">
+                  <option *ngFor="let st of titleList" [value]="st">{{st}}</option>
+                </select>
+              </div>
+            </div>
+            <label for="" class="col-sm-2 col-form-label">First Name</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="First Name">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Last Name</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Last Name">
+              </div>
+            </div>
+            <label for="" class="col-sm-2 col-form-label">Office Number</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">
+                  <select name="countryCode" id="">
+                    <option data-countryCode="US" value="1">USA (+1)</option>
+                    <option data-countryCode="CA" value="1">Canada (+1)</option>
+                    <option data-countryCode="MX" value="52">Mexico (+52)</option>
+                  </select>
+                </span>
+                <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Home Number</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">
+                  <select name="countryCode" id="">
+                    <option data-countryCode="US" value="1">USA (+1)</option>
+                    <option data-countryCode="CA" value="1">Canada (+1)</option>
+                    <option data-countryCode="MX" value="52">Mexico (+52)</option>
+                  </select>
+                </span>
+                <input type="text" class="form-control" id="" placeholder="ex. 98xxx 125xx" value="">
+              </div>
+            </div>
+            <label for="" class="col-sm-2 col-form-label">Office Number</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">
+                  <select name="countryCode" id="">
+                    <option data-countryCode="US" value="1">USA (+1)</option>
+                    <option data-countryCode="CA" value="1">Canada (+1)</option>
+                    <option data-countryCode="MX" value="52">Mexico (+52)</option>
+                  </select>
+                </span>
+                <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Office Email Address</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="" placeholder="Office Email Address" value="">
+            </div>
+            <label for="" class="col-sm-2 col-form-label">Personal Email Address</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="" placeholder="Alternate Email Address" value="">
+            </div>
+          </div>
+          <!--<div class="row">
+            <label for="" class="col-sm-3 col-form-label">Personal Home address</label>
+            <div class="col-sm-12">
+              <textarea class="form-control" id="" rows="3" placeholder="Personal Home address"></textarea>
+            </div>
+
+          </div>-->
+          <!--</div>-->
+        </mat-tab>
+        <!--<div class="formSection">
+        <h4 class="sectionTitle">Company</h4>-->
+        <mat-tab label="Company">
+          <div class="mb-3 row">
+            <div class="col-sm-6">
+              <label for="" class="form-label">Current Company</label>
+              <input type="text" class="form-control" id="" placeholder="Current Company" value="">
+            </div>
+            <div class="col-sm-6">
+              <label for="" class="form-label">Designation</label>
+              <input type="text" class="form-control" id="" placeholder="Type Country" value="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <label for="" class="form-label">Address</label>
+              <textarea class="form-control" id="" rows="5"></textarea>
+            </div>
+            <div class="col-sm-6">
+              <div class="mb-3 row">
+                <div class="col-sm-6">
+                  <label for="" class="form-label">City</label>
+                  <input type="text" class="form-control" id="" placeholder="Type City" value="">
+                </div>
+                <div class="col-sm-6">
+                  <label for="" class="form-label">State</label>
+                  <input type="text" class="form-control" id="" placeholder="Type State" value="">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <div class="col-sm-6">
+                  <label for="" class="form-label">Country</label>
+                  <input type="text" class="form-control" id="" placeholder="Type Country" value="">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!--<div class="mb-3 row">
+                    <label for="" class="col-sm-3 col-form-label">Company Details</label>
+                    <div class="col-sm-12">
+                      <textarea class="form-control" id="" rows="5" placeholder="Company Details"></textarea>
+                    </div>
+
+                  </div>
+          </div>-->
+        </mat-tab>
+        <!--<div class="formSection">
+        <h4 class="sectionTitle">Preferences</h4>-->
+        <mat-tab label="Preferences">
+          <div class="mb-3 row">
+            <div class="col-sm-4">
+              <label for="" class="form-label">Preferred Email Address</label>
+              <select name="selectedpreferredtime" formControlName="preferredEmailMode" id="aantal" class="form-select">
+                <option *ngFor="let pt of preferredModeEmailList" [value]="pt">{{pt}}</option>
               </select>
             </div>
-          </div>
-          <label for="" class="col-sm-2 col-form-label">First Name</label>
-          <div class="col-sm-4">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="First Name">
-            </div>
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="" class="col-sm-2 col-form-label">Last Name</label>
-          <div class="col-sm-4">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Last Name">
-            </div>
-          </div>
-          <label for="" class="col-sm-2 col-form-label">Office Number</label>
-          <div class="col-sm-4">
-            <div class="input-group">
-              <span class="input-group-text" id="basic-addon1">
-                <select name="countryCode" id="">
-                  <option data-countryCode="US" value="1">USA (+1)</option>
-                  <option data-countryCode="CA" value="1">Canada (+1)</option>
-                  <option data-countryCode="MX" value="52">Mexico (+52)</option>
-                </select>
-              </span>
-              <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
-            </div>
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="" class="col-sm-2 col-form-label">Home Number</label>
-          <div class="col-sm-4">
-            <div class="input-group">
-              <span class="input-group-text" id="basic-addon1">
-                <select name="countryCode" id="">
-                  <option data-countryCode="US" value="1">USA (+1)</option>
-                  <option data-countryCode="CA" value="1">Canada (+1)</option>
-                  <option data-countryCode="MX" value="52">Mexico (+52)</option>
-                </select>
-              </span>
-              <input type="text" class="form-control" id="" placeholder="ex. 98xxx 125xx" value="">
-            </div>
-          </div>
-          <label for="" class="col-sm-2 col-form-label">Office Number</label>
-          <div class="col-sm-4">
-            <div class="input-group">
-              <span class="input-group-text" id="basic-addon1">
-                <select name="countryCode" id="">
-                  <option data-countryCode="US" value="1">USA (+1)</option>
-                  <option data-countryCode="CA" value="1">Canada (+1)</option>
-                  <option data-countryCode="MX" value="52">Mexico (+52)</option>
-                </select>
-              </span>
-              <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
-            </div>
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="" class="col-sm-2 col-form-label">Office Email Address</label>
-          <div class="col-sm-4">
-            <input type="text" class="form-control" id="" placeholder="Office Email Address" value="">
-          </div>
-          <label for="" class="col-sm-2 col-form-label">Alternate Email Address</label>
-          <div class="col-sm-4">
-            <input type="text" class="form-control" id="" placeholder="Alternate Email Address" value="">
-          </div>
-        </div>
-        <div class="row">
-          <label for="" class="col-sm-3 col-form-label">Personal Home address</label>
-          <div class="col-sm-12">
-            <textarea class="form-control"  id="" rows="3" placeholder="Personal Home address"></textarea>
-          </div>
-         
-        </div>
-      </div>
-      <div class="formSection">
-        <h4 class="sectionTitle">Company</h4>
-        <div class="mb-3 row">
-          <div class="col-sm-3">
-            <label for="" class="form-label">Current Company</label>
-            <input type="text" class="form-control" id="" placeholder="Current Company" value="">
-          </div>
-        </div>
-        <div class="row">         
-          <div class="col-sm-6">
-            <label for="" class="form-label">Address</label>
-            <textarea class="form-control"  id="" rows="5"></textarea>
-          </div>
-          <div class="col-sm-6">
-            <div class="mb-3 row">
-              <div class="col-sm-6">
-                <label for="" class="form-label">City</label>
-                <input type="text" class="form-control" id=""  placeholder="Type City" value="">
+            <div class="col-sm-8">
+              <div class="mb-3 row">
+                <div class="col-sm-6">
+                  <label for="" class="form-label">Preferred Phone Number</label>
+                  <select name="selectedpreferredtime" formControlName="preferredPhoneMode" id="aantal" class="form-select">
+                    <option *ngFor="let pt of preferredModePhoneList" [value]="pt">{{pt}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label for="" class="form-label">Preferred time to Contact</label>
+                  <select name="selectedpreferredtime" formControlName="preferredtime" id="aantal" class="form-select">
+                    <option *ngFor="let pt of preferredtimeList" [value]="pt">{{pt}}</option>
+                  </select>
+
+                </div>
               </div>
-              <div class="col-sm-6">
-                <label for="" class="form-label">State</label>
-                <input type="text" class="form-control" id="" placeholder="Type State" value="">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label for="" class="form-label">Preferred Mode of Contact</label>
+              <select name="selectedpreferredtime" formControlName="preferredMode" id="aantal" class="form-select">
+                <option *ngFor="let pt of preferredModeList" [value]="pt">{{pt}}</option>
+              </select>
+            </div>
+            <!--<div class="col-sm-4">
+              <label for="" class="form-label">connections</label>
+              <select name="selectedpreferredtime" formControlName="connections" id="aantal" class="form-select">
+                <option *ngFor="let pt of connectionsList" [value]="pt">{{pt}}</option>
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <label for="" class="form-label"></label>
+              <input type="text" class="form-control" id="" placeholder="Connections To" value="">
+            </div>-->
+          </div>
+          <!--</div>-->
+        </mat-tab>
+        <!--<div class="formSection">
+        <h4 class="sectionTitle">Connections</h4>-->
+        <mat-tab label="Connections">
+          <!--<div class="mb-3 row">
+                    <div class="col-sm-4">
+                      <label for="" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="" placeholder="Name" value="">
+                    </div>
+                    <div class="col-sm-8">
+              <div class="mb-3 row">
+                <div class="col-sm-6">
+                  <label for="" class="form-label">Designation</label>
+                  <input type="text" class="form-control" id="" placeholder="Type Country" value="">
+                </div>
+                <div class="col-sm-6">
+                  <label for="" class="form-label">Preferred Mode of Contact</label>
+                  <select name="selectedpreferredtime" formControlName="preferredMode" id="aantal" class="form-select">
+                    <option *ngFor="let pt of preferredModeList" [value]="pt">{{pt}}</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+          </div>-->
+          <div class="mb-3 row">
+            <div class="col-sm-6">
+              <label for="" class="form-label">connections</label>
+              <select name="selectedpreferredtime" formControlName="connections" id="aantal" class="form-select">
+                <option *ngFor="let pt of connectionsList" [value]="pt">{{pt}}</option>
+              </select>
+            </div>
+            <div class="col-sm-6">
+              <label for="" class="form-label">Name</label>
+              <input type="text" class="form-control" id="" placeholder="Connections To" value="">
+            </div>
+          </div>
+          <!--</div>-->
+        </mat-tab>
+        <!--<div class="formSection">
+        <h4 class="sectionTitle">Social Footprint</h4>-->
+        <mat-tab label="Social Footprint">
+          <div class="mb-2 row">
+            <label for="" class="col-sm-1"><a class="TagBtn bg-linkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="linkedin">
               </div>
             </div>
-            <div class="mb-3 row">
-              <div class="col-sm-6">
-                <label for="" class="form-label">Country</label>
-                <input type="text" class="form-control" id=""  placeholder="Type Country" value="">
+            <label for="" class="col-sm-1"><a class="TagBtn bg-fb"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="facebook">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <label for="" class="col-sm-1"><a class="TagBtn bg-insta"><i class="fa fa-instagram" aria-hidden="true"></i></a></label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="instagram">
               </div>
             </div>
           </div>
 
-        </div>
-        <!--<div class="mb-3 row">
-    <label for="" class="col-sm-3 col-form-label">Company Details</label>
-    <div class="col-sm-12">
-      <textarea class="form-control" id="" rows="5" placeholder="Company Details"></textarea>
-    </div>
-
-  </div>-->
-      </div>
-      <div class="formSection">
-        <h4 class="sectionTitle">Connections</h4>
-        <div class="mb-3 row">
-          <div class="col-sm-4">
-            <label for="" class="form-label">Name</label>
-            <input type="text" class="form-control" id="" placeholder="Name" value="">
-          </div>
-          <div class="col-sm-8">
-            <div class="mb-3 row">
-              <div class="col-sm-6">
-                <label for="" class="form-label">Designation</label>
-                <input type="text" class="form-control" id="" placeholder="Type Country" value="">
-              </div>
-              <div class="col-sm-6">
-                <label for="" class="form-label">Preferred Mode of Contact</label>
-                <select name="selectedpreferredtime" formControlName="preferredMode" id="aantal" class="form-select">
-                  <option *ngFor="let pt of preferredModeList" [value]="pt">{{pt}}</option>
-                </select>
-              </div>
-            </div>
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4">
-            <label for="" class="form-label">Preferred time to Contact</label>
-            <select name="selectedpreferredtime" formControlName="preferredtime" id="aantal" class="form-select">
-              <option *ngFor="let pt of preferredtimeList" [value]="pt">{{pt}}</option>
-            </select>
-          </div>
-          <div class="col-sm-4">
-            <label for="" class="form-label">connections</label>
-            <select name="selectedpreferredtime" formControlName="connections" id="aantal" class="form-select">
-              <option *ngFor="let pt of connectionsList" [value]="pt">{{pt}}</option>
-            </select>
-          </div>
-          <div class="col-sm-4">
-            <label for="" class="form-label"></label>
-            <input type="text" class="form-control" id="" placeholder="Connections To" value="">
-          </div>
-        </div>
-      </div>
-      <div class="formSection">
-        <h4 class="sectionTitle">Social Footprint</h4>
-        <div class="mb-2 row">
-          <label for="" class="col-sm-1"><a class="TagBtn bg-linkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></label>
-          <div class="col-sm-4">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="linkedin">
-            </div>
-          </div>
-          <label for="" class="col-sm-1"><a class="TagBtn bg-fb"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></label>
-          <div class="col-sm-4">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="facebook">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <label for="" class="col-sm-1"><a class="TagBtn bg-insta"><i class="fa fa-instagram" aria-hidden="true"></i></a></label>
-          <div class="col-sm-4">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="instagram">
-            </div>
-          </div>         
-        </div>
-
-      </div>
-      <div class="formSection">
-        <h4 class="sectionTitle">Activity</h4>
-        <a class="TagBtn bg-blue"><i class="fa fa-phone" aria-hidden="true"></i></a>&nbsp;&nbsp;
-        <a class="TagBtn bg-orange"><i class="fa fa-comments" aria-hidden="true"></i></a>&nbsp;&nbsp;
-        <a class="TagBtn bg-green"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>&nbsp;&nbsp;
-        <a class="TagBtn bg-yellow" (click)="openNotesPopup()"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></a>
-      </div>
+          <!--</div>-->
+        </mat-tab>
+        <!--<div class="formSection">
+        <h4 class="sectionTitle">Activity</h4>-->
+        <mat-tab label="Activity">
+          <a class="TagBtn bg-blue"><i class="fa fa-phone" aria-hidden="true"></i></a>&nbsp;&nbsp;
+          <a class="TagBtn bg-orange"><i class="fa fa-comments" aria-hidden="true"></i></a>&nbsp;&nbsp;
+          <a class="TagBtn bg-green"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>&nbsp;&nbsp;
+          <a class="TagBtn bg-yellow" (click)="openNotesPopup()"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></a>
+          <!--</div>-->
+        </mat-tab>
+      </mat-tab-group>
       <div class="formSubmitArea">
         <div class="mb-3 row">
           <div class="col-sm-12">
-            <button type="submit" *ngIf="isAddMode" class="btn btn-primary">Save</button> &nbsp;
-            <button type="submit" *ngIf="!isAddMode" class="btn btn-primary">Edit</button> &nbsp;
-            <button type="submit" *ngIf="!isAddMode" class="btn btn-danger">Delete</button>
+            <!--<button type="submit" *ngIf="isAddMode" class="btn btn-primary">Submit</button> &nbsp;
+            <button type="submit" *ngIf="!isAddMode" class="btn btn-primary">Save</button> &nbsp;
+            <button type="submit" *ngIf="!isAddMode" class="btn btn-danger">Delete</button>-->
           </div>
         </div>
       </div>
@@ -244,14 +316,14 @@
       <div class="modal-body">
         <div class="mb-3 row">
           <div class="col-sm-12">
-            <input type="text" class="form-control" id="" placeholder="Type Tag Name" value="">
+            <input type="text" class="form-control" id="" [(ngModel)]="tagName" placeholder="Type Tag Name" value="">
           </div>
         </div>
-       
+
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save</button> &nbsp;
-        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Cancel</button>
+        <button type="submit" class="btn btn-primary" (click)="addTagList()"><i class="fa fa-check" aria-hidden="true"></i></button> &nbsp;
+        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')"><i class="fa fa-ban" aria-hidden="true"></i></button>
       </div>
     </div>
   </div>
@@ -274,7 +346,7 @@
             </ckeditor>
           </div>
         </div>
-      
+
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Save</button>&nbsp;

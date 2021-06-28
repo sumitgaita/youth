@@ -3,15 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\accesscontrol",
-    "\\src\\app\\accesscontrol\\list",
-    "\\src\\app\\company\\add-edit",
-    "\\src\\app\\company\\list",
-    "\\src\\app\\contacts\\add-edit",
     "\\src\\app\\roles",
-    "\\src\\app\\users",
-    "\\src\\app\\users\\add-edit"
+    "\\src\\app\\roles\\add-edit",
+    "\\src\\app\\roles\\list",
+    "\\src\\app\\team",
+    "\\src\\app\\team\\add-edit",
+    "\\src\\app\\team\\list",
+    "\\src\\app\\users\\list"
   ],
-  "SelectedNode": "\\src\\app\\app.component.html",
+  "SelectedNode": "\\src\\app\\team\\list\\list.component.ts",
   "PreviewInSolutionExplorer": false
 }

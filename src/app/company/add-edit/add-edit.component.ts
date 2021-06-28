@@ -25,6 +25,8 @@ export class AddEditComponent implements OnInit {
   addEmailRow: Array<any> = [];
   newEmailRow: any = {};
   companyName: string;
+  taglist: Array<any> = [];
+  tagName: string;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -115,16 +117,26 @@ export class AddEditComponent implements OnInit {
   }
 
   openPopup() {
+    this.tagName = '';
     this.openModel(this.addTag);
   }
 
+  addTagList() {
+    this.taglist.push(this.tagName);
+    this.modalService.dismissAll();
+  }
+  tagRemove(index: number) {
+    this.taglist.splice(index, 1);
+    return true;
+
+  }
   addAddressListRow() {
     this.newAddressRow = { address: '', city: '', state: '', country: '' };
     this.addAddressRow.push(this.newAddressRow);
     return true;
   }
 
-  deleteAddressRow(index) {
+  deleteAddressRow(index: number) {
     if (this.addAddressRow.length == 1) {
       return false;
     } else {
@@ -138,7 +150,7 @@ export class AddEditComponent implements OnInit {
     return true;
   }
 
-  deleteEmailRow(index) {
+  deleteEmailRow(index: number) {
     if (this.addEmailRow.length == 1) {
       return false;
     } else {
@@ -146,7 +158,7 @@ export class AddEditComponent implements OnInit {
       return true;
     }
   }
-  private openModel(content) {
+  private openModel(content: any) {
     this.modalService.open(content, { centered: true, backdrop: "static", size: "lg" }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

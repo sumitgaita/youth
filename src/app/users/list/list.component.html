@@ -22,6 +22,8 @@
                      id="2"
                      [pagination]="true"
                      (gridReady)="onGridReady($event)"
+                     [suppressRowClickSelection]="true"
+                     (cellClicked)="onCellClicked($event)"
                      [paginationPageSize]="defaultPageSize"
                      [columnDefs]="columnDefs">
     </ag-grid-angular>

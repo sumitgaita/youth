@@ -5,6 +5,16 @@
     <h6 *ngIf="isAddMode">Add Team </h6>
     <h6 *ngIf="!isAddMode">Edit Team </h6>
   </div>
+  <div class="tagBtnArea">
+    <button type="submit" *ngIf="isAddMode" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics">
+      <img src="./../assets/graphic_icon_save.jpg" class="img-fluid mx-auto d-block " />
+    </button>
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics">
+      <img src="./../assets/graphic_icon_delete.jpg" class="img-fluid mx-auto d-block " />
+    </button>
+  </div>
 </div>
 
 
@@ -42,9 +52,9 @@
       <div class="formSubmitArea">
         <div class="mb-3 row">
           <div class="col-sm-12">
-            <button type="submit" *ngIf="isAddMode" class="btn btn-primary">Save</button> &nbsp;
+            <!--<button type="submit" *ngIf="isAddMode" class="btn btn-primary">Save</button> &nbsp;
             <button type="submit" *ngIf="!isAddMode" class="btn btn-primary">Edit</button> &nbsp;
-            <button type="submit" *ngIf="!isAddMode" class="btn btn-danger">Delete</button>
+            <button type="submit" *ngIf="!isAddMode" class="btn btn-danger">Delete</button>-->
           </div>
         </div>
       </div>

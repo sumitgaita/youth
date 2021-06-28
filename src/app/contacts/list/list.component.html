@@ -12,8 +12,7 @@
     </div>
   </div>
 
-  <div class="settingsFromSection">
-  
+  <div class="settingsFromSection">  
     <ag-grid-angular [domLayout]="'autoHeight'"
                      class="ag-theme-balham"
                      [rowData]="contacts"
@@ -22,6 +21,8 @@
                      id="2"
                      [pagination]="true"
                      (gridReady)="onGridReady($event)"
+                     [suppressRowClickSelection]="true"
+                     (cellClicked)="onCellClicked($event)"
                      [paginationPageSize]="defaultPageSize"
                      [columnDefs]="columnDefs">
     </ag-grid-angular>

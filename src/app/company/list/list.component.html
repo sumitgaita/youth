@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     
     <div class="companyActionDropdown">
-      <h1 class="headerTitle">Company</h1>
+      <!--<h1 class="headerTitle">Company</h1>-->
       <select name="selectedStatus" [(ngModel)]="status" id="aantal" class="form-select">
         <option *ngFor="let st of statusList" [value]="st">{{st}}</option>
       </select>
@@ -27,6 +27,8 @@
                      columnHeight="50"
                      [pagination]="true"
                      (gridReady)="onGridReady($event)"
+                     [suppressRowClickSelection]="true"
+                     (cellClicked)="onCellClicked($event)"
                      [paginationPageSize]="defaultPageSize"
                      [columnDefs]="columnDefs">
     </ag-grid-angular>

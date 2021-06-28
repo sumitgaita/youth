@@ -9,12 +9,15 @@ import { AddEditComponent } from './add-edit/add-edit.component';
 import { NotesComponent } from './notes/notes.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { AgGridModule } from 'ag-grid-angular';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     CompanyRoutingModule,
+    MatTabsModule,
+    MatSlideToggleModule,
     CKEditorModule,
     FormsModule,
     AgGridModule.withComponents([])
