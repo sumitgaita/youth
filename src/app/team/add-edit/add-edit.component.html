@@ -6,12 +6,14 @@
     <h6 *ngIf="!isAddMode">Edit Team </h6>
   </div>
   <div class="tagBtnArea">
-    <button type="submit" *ngIf="isAddMode" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-
-    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics">
+    <button type="submit" *ngIf="isAddMode" class="btn buttonShape buttonGraphics saveBtn">
       <img src="./../assets/graphic_icon_save.jpg" class="img-fluid mx-auto d-block " />
     </button>
-    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics">
+
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics saveBtn">
+      <img src="./../assets/graphic_icon_save.jpg" class="img-fluid mx-auto d-block " />
+    </button>
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics deleteBtn">
       <img src="./../assets/graphic_icon_delete.jpg" class="img-fluid mx-auto d-block " />
     </button>
   </div>

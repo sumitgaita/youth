@@ -3,14 +3,15 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\contacts",
+    "\\src\\app\\contacts\\add-edit",
     "\\src\\app\\roles",
     "\\src\\app\\roles\\add-edit",
-    "\\src\\app\\roles\\list",
-    "\\src\\app\\team\\list",
+    "\\src\\app\\team",
+    "\\src\\app\\team\\add-edit",
     "\\src\\app\\users",
-    "\\src\\app\\users\\add-edit",
-    "\\src\\app\\users\\list"
+    "\\src\\app\\users\\add-edit"
   ],
-  "SelectedNode": "\\src\\styles.less",
+  "SelectedNode": "\\src\\app\\team\\add-edit\\add-edit.component.html",
   "PreviewInSolutionExplorer": false
 }

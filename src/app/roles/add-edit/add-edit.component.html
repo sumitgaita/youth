@@ -6,12 +6,14 @@
     <h6 *ngIf="!isAddMode">Edit Roles </h6>
   </div>
   <div class="tagBtnArea">
-    <button type="submit" *ngIf="isAddMode" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-
-    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics">
+    <button type="submit" *ngIf="isAddMode" class="btn buttonShape buttonGraphics saveBtn">
       <img src="./../assets/graphic_icon_save.jpg" class="img-fluid mx-auto d-block " />
     </button>
-    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics">
+
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics saveBtn">
+      <img src="./../assets/graphic_icon_save.jpg" class="img-fluid mx-auto d-block " />
+    </button>
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics deleteBtn">
       <img src="./../assets/graphic_icon_delete.jpg" class="img-fluid mx-auto d-block " />
     </button>
   </div>
@@ -63,7 +65,7 @@
                     </select>
                   </td>
                 </tr>
-                <!--<tr>
+                <tr>
                   <td>Administrator</td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
@@ -76,8 +78,8 @@
                       <option value="3">View Only</option>
                     </select>
                   </td>
-                </tr>-->
-                <!--<tr>
+                </tr>
+                <tr>
                   <td>Account Manager</td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
@@ -90,8 +92,8 @@
                       <option value="3">View Only</option>
                     </select>
                   </td>
-                </tr>-->
-                <!--<tr>
+                </tr>
+                <tr>
                   <td>HR Manager</td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
@@ -104,7 +106,7 @@
                       <option value="3">View Only</option>
                     </select>
                   </td>
-                </tr>-->
+                </tr>
               </tbody>
             </table>
           </div>

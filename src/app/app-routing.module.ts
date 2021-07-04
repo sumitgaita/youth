@@ -12,6 +12,7 @@ const rolesModule = () => import('./roles/roles.module').then(x => x.RolesModule
 const accesscontrolModule = () => import('./accesscontrol/accesscontrol.module').then(x => x.AccesscontrolModule);
 const teamModule = () => import('./team/team.module').then(x => x.TeamModule);
 const talentModule = () => import('./talent/talent.module').then(x => x.TalentModule);
+const candidatesModule = () => import('./candidates/candidates.module').then(x => x.CandidatesModule);
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'accesscontrol', loadChildren: accesscontrolModule, canActivate: [AuthGuard] },
   { path: 'team', loadChildren: teamModule, canActivate: [AuthGuard] },
   { path: 'talent', loadChildren: talentModule, canActivate: [AuthGuard] },
+  { path: 'candidates', loadChildren: candidatesModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
 
   // otherwise redirect to home

@@ -1,0 +1,42 @@
+<div class="settingPanel companyheader">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    
+    <div class="companyActionDropdown">
+      <h1 class="headerTitle">Candidates</h1>     
+    </div>
+    <div class="col-md-6 titleActionArea">
+      <div class="col-md-6 px-md-2">
+        <div class="searchBox">
+          <input class="form-control searchCandidate" type="text" placeholder="Search" aria-label="Search">
+          <a href="#" class=""><img src="./../assets/loupe.svg" class="img-fluid " alt="icon"></a>
+        </div>
+      </div>
+      <a routerLink="advancedsearch" class="TagBtn advanceSearchBtn"><img src="./../assets/advanced_search.png" class="img-fluid " alt="icon"></a>
+      <a routerLink="add" class="TagBtn bg-blue"><i class="fa fa-users" aria-hidden="true"></i></a>
+    </div>
+  </div>
+
+  <div class="settingsFromSection">
+    <ag-grid-angular [domLayout]="'autoHeight'"
+                     class="ag-theme-balham"
+                     [rowData]="candidates"
+                     rowHeight="40"
+                     id="1"
+                     columnHeight="50"
+                     [pagination]="true"
+                     (gridReady)="onGridReady($event)"
+                     [suppressRowClickSelection]="true"
+                     (cellClicked)="onCellClicked($event)"
+                     [paginationPageSize]="defaultPageSize"
+                     [columnDefs]="columnDefs">
+    </ag-grid-angular>
+    <!--Page Size:
+  <select (change)="onPageSizeChanged($event)">
+    <option value="10">10</option>
+    <option value="100">100</option>
+    <option value="500">500</option>
+    <option value="1000">1000</option>
+  </select>-->
+
+  </div>
+</div>
