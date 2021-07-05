@@ -21,8 +21,7 @@ export class ListComponent implements OnInit, OnDestroy {
   constructor(private accountService: AccountService, private router: Router) {
     this.columnDefs = [
       { headerName: 'Roles', width: 300, tooltipField: 'roles', field: 'roles', sortable: true, filter: true },
-      { headerName: 'Number Of Users', width: 200, tooltipField: 'numberofusers', field: 'numberofusers', sortable: true, filter: true },
-      { headerName: 'Privilages', width: 538, tooltipField: 'privilages', field: 'privilages', sortable: true, filter: true }
+      { headerName: 'Number Of Users', width: 200, tooltipField: 'numberofusers', field: 'numberofusers', sortable: true, filter: true }
     ];
   }
 
@@ -30,10 +29,10 @@ export class ListComponent implements OnInit, OnDestroy {
     //this.accountService.getAll()
     //    .pipe(first())
     //    .subscribe(users => this.users = users);
-    this.roles = [{ id: '1', roles: 'Accounts', numberofusers: 1, privilages: 'admin users have all permission', isDeleting: false },
-      { id: '1', roles: 'Administrator', numberofusers: 1, privilages: 'admin users have all permission', isDeleting: false },
-      { id: '1', roles: 'Account Manager', numberofusers: 1, privilages: 'admin users have all permission', isDeleting: false },
-      { id: '1', roles: 'HR Manager', numberofusers: 1, privilages: 'admin users have all permission', isDeleting: false }];
+    this.roles = [{ id: '1', roles: 'Accounts', numberofusers: 1, isDeleting: false },
+      { id: '1', roles: 'Administrator', numberofusers: 1, isDeleting: false },
+      { id: '1', roles: 'Account Manager', numberofusers: 1, isDeleting: false },
+      { id: '1', roles: 'HR Manager', numberofusers: 1, isDeleting: false }];
     //this.setupSubscription();
   }
 
