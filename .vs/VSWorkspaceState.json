@@ -3,15 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\contacts",
-    "\\src\\app\\contacts\\add-edit",
+    "\\src\\app\\candidates",
     "\\src\\app\\roles",
-    "\\src\\app\\roles\\add-edit",
     "\\src\\app\\team",
     "\\src\\app\\team\\add-edit",
     "\\src\\app\\users",
-    "\\src\\app\\users\\add-edit"
+    "\\src\\app\\users\\add-edit",
+    "\\src\\assets"
   ],
-  "SelectedNode": "\\src\\app\\team\\add-edit\\add-edit.component.html",
+  "SelectedNode": "\\src\\app\\candidates\\advancedsearch\\advancedsearch.component.html",
   "PreviewInSolutionExplorer": false
 }
