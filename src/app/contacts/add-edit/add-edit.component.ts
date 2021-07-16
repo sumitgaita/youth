@@ -34,6 +34,12 @@ export class AddEditComponent implements OnInit {
   mycontent: string;
   taglist: Array<any> = [];
   tagName: string;
+  isRelatedto: boolean = true;
+  userList = [];
+  selectedReportList = [];
+  instagram: string = '';
+  facebook: string = '';
+  linkedin: string = '';
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -45,6 +51,9 @@ export class AddEditComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
+    this.instagram = 'https://www.instagram.com/';
+    this.facebook = 'https://www.facebook.com/';
+    this.linkedin = 'https://in.linkedin.com/';
     this.isAddMode = !this.id;
     this.ckeConfig = {
       allowedContent: false,
@@ -64,7 +73,7 @@ export class AddEditComponent implements OnInit {
       //password: ['', passwordValidators]
       title: ['', Validators.required],
       preferredtime: [''],
-      connections: [''],
+      connections: ['Related to'],
       preferredMode: [''],
       preferredEmailMode: [''],
       preferredPhoneMode: ['']
@@ -75,6 +84,13 @@ export class AddEditComponent implements OnInit {
       //  .pipe(first())
       //  .subscribe(x => this.form.patchValue(x));
     }
+    this.userList = [
+      { item_id: 1, item_text: 'amit saha' },
+      { item_id: 2, item_text: 'anada sarma' },
+      { item_id: 3, item_text: 'anup gupta' },
+      { item_id: 4, item_text: 'Navsari' },
+      { item_id: 5, item_text: 'avik roy' }
+    ];
   }
 
   // convenience getter for easy access to form fields
@@ -107,6 +123,28 @@ export class AddEditComponent implements OnInit {
     this.taglist.splice(index, 1);
     return true;
 
+  }
+
+  SocialFootprint(social: string) {
+    if (social === 'linkedin' && this.linkedin && this.linkedin !== '') {
+      window.open(this.linkedin, '_blank');
+    }
+    else if (social === 'facebook' && this.facebook && this.facebook !== '') {
+      window.open(this.facebook, '_blank');
+    }
+    else if (social === 'instagram' && this.instagram && this.instagram !== '') {
+      window.open(this.instagram, '_blank');
+    }
+
+  }
+
+  onConnectionsSelected(value: string) {
+    if (value === 'Related to') {
+      this.isRelatedto = true;
+    }
+    else {
+      this.isRelatedto = false;
+    }
   }
 
   private createUser() {

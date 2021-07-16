@@ -7,8 +7,8 @@
     <div class="col-md-6 titleActionArea">
       <div class="col-md-6 px-md-2">
         <div class="searchBox">
-          <input class="form-control searchCandidate" type="text" placeholder="Search" aria-label="Search">
-          <a href="#" class=""><img src="./../assets/loupe.svg" class="img-fluid " alt="icon"></a>
+          <input class="form-control searchCandidate" type="text" placeholder="Search by Candidates name" (change)="search($event.target.value)" aria-label="Search">
+          <a><img src="./../assets/loupe.svg" class="img-fluid " alt="icon"></a>
         </div>
       </div>
       <a routerLink="advancedsearch" class="TagBtn advanceSearchBtn" title="Advanced Search"><img src="./../assets/advanced_search.png" class="img-fluid " alt="icon"></a>

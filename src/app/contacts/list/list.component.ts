@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class ListComponent implements OnInit, OnDestroy {
 
   contacts = null;
+  allContacts = null;
   //@ViewChild('addTag') addTag: NgbModal;
   //modalOptions: NgbModalOptions;
   //closeResult: string;
@@ -21,8 +22,7 @@ export class ListComponent implements OnInit, OnDestroy {
   defaultPageSize = 10;
   private subscription: Subscription[] = [];
   constructor(private accountService: AccountService,
-    private modalService: NgbModal, private contactsService: ContactsService, private router: Router)
-  {
+    private modalService: NgbModal, private contactsService: ContactsService, private router: Router) {
     this.columnDefs = [
       {
         headerName: 'Full Name',
@@ -36,17 +36,54 @@ export class ListComponent implements OnInit, OnDestroy {
       { headerName: 'Company', width: 170, tooltipField: 'companyName', field: 'companyName', sortable: true, filter: true },
       { headerName: 'Location', width: 247, field: 'location', tooltipField: 'location', tooltipComponentParams: { color: '#ececec' }, sortable: true, filter: true },
       { headerName: 'Primary Phone Number', width: 250, field: 'primaryPhoneNumber', tooltipField: 'primaryPhoneNumber', tooltipComponentParams: { color: '#ececec' }, sortable: true, filter: true },
-      { headerName: 'Primary email Address', width: 250, tooltipField: 'primaryemailAddress', field: 'primaryemailAddress', sortable: true, filter: true }
+      { headerName: 'Primary email Address', width: 250, tooltipField: 'primaryemailAddress', field: 'primaryemailAddress', sortable: true, filter: true },
+      {
+        headerName: 'Status', width: 100, field: '', tooltipField: 'status', cellRenderer: function (param: any) {
+          if (param.data.id !== '') {
+            const eDiv = document.createElement('div');
+            let cellDef = '';
+            if (param.data.status === 'Active') {
+              cellDef += `<div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+            </div>`;
+            }
+            else {
+              cellDef += `<div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            </div>`;
+            }
+            eDiv.innerHTML = cellDef;
+            if (eDiv.querySelector('.companynamecell')) {
+              eDiv.querySelector('.companynamecell').addEventListener('click', (ev: any) => {
+                // AccountService.onEditUsersRow.emit({ data: param.data });
+              })
+            }
+            return eDiv;
+          }
+        },
+        sortable: false
+      }
     ];
   }
 
   ngOnInit() {
-    
-    this.contacts = [{ id: '1', fullName: 'sumit maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', isDeleting: false },
-      { id: '2', fullName: 'sumit maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', isDeleting: false },
-      { id: '3', fullName: 'sumit maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', isDeleting: false },
-      { id: '4', fullName: 'sumit maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', isDeleting: false }];
+
+    this.contacts = [{ id: '1', fullName: 'anit maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', status: 'Active', isDeleting: false },
+    { id: '2', fullName: 'arun maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', status: 'Active', isDeleting: false },
+    { id: '3', fullName: 'sathis maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', status: 'Inactive', isDeleting: false },
+    { id: '4', fullName: 'sumit maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', status: 'Inactive', isDeleting: false }];
     //this.setupSubscription();
+    this.allContacts = this.contacts;
+  }
+
+  search(value: string): void {
+    this.contacts = this.allContacts;
+    if (value === "") {
+      this.contacts = this.contacts;
+    }
+    else {
+      this.contacts = this.contacts.filter((val) => val.fullName.toLowerCase().includes(value));
+    }
   }
 
   onGridReady(params: any) {
@@ -59,7 +96,12 @@ export class ListComponent implements OnInit, OnDestroy {
     }
   }
   onCellClicked(event: any) {
-    this.router.navigate(['/contacts/edit/' + event.data.id]);
+    if (event.colDef.headerName === 'Status') {
+
+    }
+    else {
+      this.router.navigate(['/contacts/edit/' + event.data.id]);
+    }
   }
   ngOnDestroy() {
     //this.subscription.forEach(sub => {

@@ -1,19 +1,19 @@
 
 <div class="EditPageHeader">
-  <div class="backBtnArea"><a class="TagBtn bg-purple" routerLink="/roles"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
+  <div class="backBtnArea"><a class="TagBtn bg-purple" routerLink="/roles" title="Back"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
   <div class="Header">
     <h6 *ngIf="isAddMode">Add Roles </h6>
     <h6 *ngIf="!isAddMode">Edit Roles </h6>
   </div>
   <div class="tagBtnArea">
-    <button type="submit" *ngIf="isAddMode" class="btn buttonShape buttonGraphics saveBtn">
+    <button type="submit" *ngIf="isAddMode" class="btn buttonShape buttonGraphics saveBtn" title="Save">
       <img src="./../assets/graphic_icon_save.jpg" class="img-fluid mx-auto d-block " />
     </button>
 
-    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics saveBtn">
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics saveBtn" title="Save">
       <img src="./../assets/graphic_icon_save.jpg" class="img-fluid mx-auto d-block " />
     </button>
-    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics deleteBtn">
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics deleteBtn" title="Delete">
       <img src="./../assets/graphic_icon_delete.jpg" class="img-fluid mx-auto d-block " />
     </button>
   </div>
@@ -38,6 +38,17 @@
             </div>
           </div>
         </div>
+        <!--<div class="mb-3 row">
+          <label for="" class="col-sm-2 col-form-label">Module Name</label>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <select name="selectedmoduleName" formControlName="moduleName" id="aantal" class="form-select">
+                <option *ngFor="let pt of moduleNameList" [value]="pt">{{pt}}</option>
+              </select>
+            </div>
+          </div>
+         
+        </div>-->
         <div class="row">
           <div class="col-sm-12">
             <table class="table">
@@ -52,10 +63,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Accounts</td>
+                  <td>Company</td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
-                  <td><input class="form-check-input" type="checkbox" value="" id="" ></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id=""></td>
                   <td>
                     <select class="form-select">
                       <option selected>Select</option>
@@ -66,10 +77,10 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>Administrator</td>
+                  <td>Contacts</td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
-                  <td><input class="form-check-input" type="checkbox" value="" id="" ></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id=""></td>
                   <td>
                     <select class="form-select">
                       <option selected>Select</option>
@@ -80,10 +91,10 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>Account Manager</td>
+                  <td>Campign</td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
-                  <td><input class="form-check-input" type="checkbox" value="" id="" ></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id=""></td>
                   <td>
                     <select class="form-select">
                       <option selected>Select</option>
@@ -94,10 +105,80 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>HR Manager</td>
+                  <td>Sales Pipeline</td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
                   <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
-                  <td><input class="form-check-input" type="checkbox" value="" id="" ></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id=""></td>
+                  <td>
+                    <select class="form-select">
+                      <option selected>Select</option>
+                      <option value="1">Everyone</option>
+                      <option value="2">No Access</option>
+                      <option value="3">View Only</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Openings</td>
+                  <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id=""></td>
+                  <td>
+                    <select class="form-select">
+                      <option selected>Select</option>
+                      <option value="1">Everyone</option>
+                      <option value="2">No Access</option>
+                      <option value="3">View Only</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Candidates</td>
+                  <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id=""></td>
+                  <td>
+                    <select class="form-select">
+                      <option selected>Select</option>
+                      <option value="1">Everyone</option>
+                      <option value="2">No Access</option>
+                      <option value="3">View Only</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Calendar</td>
+                  <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id=""></td>
+                  <td>
+                    <select class="form-select">
+                      <option selected>Select</option>
+                      <option value="1">Everyone</option>
+                      <option value="2">No Access</option>
+                      <option value="3">View Only</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Reports</td>
+                  <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id=""></td>
+                  <td>
+                    <select class="form-select">
+                      <option selected>Select</option>
+                      <option value="1">Everyone</option>
+                      <option value="2">No Access</option>
+                      <option value="3">View Only</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Settings</td>
+                  <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id="" checked></td>
+                  <td><input class="form-check-input" type="checkbox" value="" id=""></td>
                   <td>
                     <select class="form-select">
                       <option selected>Select</option>
@@ -112,7 +193,7 @@
           </div>
         </div>
 
-        
+
       </div>
 
       <div class="formSubmitArea">

@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class ListComponent implements OnInit, OnDestroy {
   teams = null;
+  allTeams = null;
   columnDefs;
   private gridApi: any;
   private gridColumnApi: any;
@@ -20,7 +21,7 @@ export class ListComponent implements OnInit, OnDestroy {
     this.columnDefs = [
      
       { headerName: 'Team Name', width: 500, tooltipField: 'teamName', field: 'teamName', sortable: true, filter: true },
-      { headerName: 'User Name', width: 538, tooltipField: 'userName', field: 'userName', sortable: true, filter: true }
+      { headerName: 'Users', width: 538, tooltipField: 'userName', field: 'userName', sortable: true, filter: true }
     ];
   }
   
@@ -34,6 +35,17 @@ export class ListComponent implements OnInit, OnDestroy {
       { id: '3', teamName: 'arun das3', userName: 'ABC ABC3' },
       { id: '4', teamName: 'arun das4', userName: 'ABC ABC4' }];
    // this.setupSubscription();
+    this.allTeams = this.teams;
+  }
+
+  search(value: string): void {
+    this.teams = this.allTeams;
+    if (value === "") {
+      this.teams = this.teams;
+    }
+    else {
+      this.teams = this.teams.filter((val) => val.teamName.toLowerCase().includes(value));
+    }
   }
 
   onGridReady(params: any) {

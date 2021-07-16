@@ -20,13 +20,26 @@ export class AddEditComponent implements OnInit {
   loading = false;
   submitted = false;
   statusList: string[] = ['Active', 'Closed'];
-  addAddressRow: Array<any> = [];
+  //addAddressRow: Array<any> = [];
   newAddressRow: any = {};
-  addEmailRow: Array<any> = [];
+  addressList: Array<any> = [];
+  //addEmailRow: Array<any> = [];
+  emailList: Array<any> = [];
   newEmailRow: any = {};
   companyName: string;
   taglist: Array<any> = [];
   tagName: string;
+  address: string;
+  city: string;
+  state: string;
+  country: string;
+  primaryEmail: string;
+  secondaryEmail: string;
+  website: string;
+  isWebsiteVisible: boolean;
+  instagram: string = '';
+  facebook: string = '';
+  linkedin: string = '';
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -39,6 +52,11 @@ export class AddEditComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
+    this.website = 'www.google.com';
+    this.instagram = 'https://www.instagram.com/';
+    this.facebook = 'https://www.facebook.com/';
+    this.linkedin = 'https://in.linkedin.com/';
+    this.isWebsiteVisible = this.website && this.website.length > 0 ? false : true;
     // password not required in edit mode
     const passwordValidators = [Validators.minLength(6)];
     if (this.isAddMode) {
@@ -58,10 +76,10 @@ export class AddEditComponent implements OnInit {
       //  .pipe(first())
       //  .subscribe(x => this.form.patchValue(x));
     }
-    this.newAddressRow = { address: '', city: '', state: '', country: '' };
-    this.addAddressRow.push(this.newAddressRow);
+    //this.newAddressRow = { address: '', city: '', state: '', country: '' };
+    //this.addAddressRow.push(this.newAddressRow);
     this.newEmailRow = { primaryEmail: '', secondaryEmail: '' };
-    this.addEmailRow.push(this.newAddressRow);
+    //this.addEmailRow.push(this.newAddressRow);
   }
 
   // convenience getter for easy access to form fields
@@ -86,6 +104,13 @@ export class AddEditComponent implements OnInit {
     }
   }
 
+  editwebsite() {
+    this.isWebsiteVisible = true;
+  }
+  deletewebsite() {
+    this.website = '';
+    this.isWebsiteVisible = true;
+  }
   private createUser() {
     this.accountService.register(this.form.value)
       .pipe(first())
@@ -115,7 +140,18 @@ export class AddEditComponent implements OnInit {
         }
       });
   }
+  SocialFootprint(social: string) {
+    if (social === 'linkedin' && this.linkedin && this.linkedin !== '') {
+      window.open(this.linkedin, '_blank');
+    }
+    else if (social === 'facebook' && this.facebook && this.facebook !== '') {
+      window.open(this.facebook, '_blank');
+    }
+    else if (social === 'instagram' && this.instagram && this.instagram !== '') {
+      window.open(this.instagram, '_blank');
+    }
 
+  }
   openPopup() {
     this.tagName = '';
     this.openModel(this.addTag);
@@ -131,30 +167,60 @@ export class AddEditComponent implements OnInit {
 
   }
   addAddressListRow() {
-    this.newAddressRow = { address: '', city: '', state: '', country: '' };
-    this.addAddressRow.push(this.newAddressRow);
-    return true;
+    if ((this.address && this.address !== '') && (this.city && this.city !== '')
+      && (this.state && this.state !== '') && (this.country && this.country !== '')) {
+      this.newAddressRow = { address: this.address, city: this.city, state: this.state, country: this.country };
+      this.addressList.push(this.newAddressRow);
+      this.clearAddress();
+      return true;
+    }
   }
 
+  clearAddress() {
+    this.address = '';
+    this.city = '';
+    this.state = '';
+    this.country = '';
+  }
+
+  editAddressRow(address: any) {
+    this.address = address.address;
+    this.city = address.city;
+    this.state = address.state;
+    this.country = address.country;
+  }
   deleteAddressRow(index: number) {
-    if (this.addAddressRow.length == 1) {
+    if (this.addressList.length == 0) {
       return false;
     } else {
-      this.addAddressRow.splice(index, 1);
+      this.addressList.splice(index, 1);
       return true;
     }
   }
   addEmailListRow() {
-    this.newEmailRow = { primaryEmail: '', secondaryEmail: '' };
-    this.addEmailRow.push(this.newEmailRow);
-    return true;
+    if ((this.primaryEmail && this.primaryEmail !== '') && (this.secondaryEmail && this.secondaryEmail !== '')) {
+      this.newEmailRow = { primaryEmail: this.primaryEmail, secondaryEmail: this.secondaryEmail };
+      this.emailList.push(this.newEmailRow);
+      this.clearEmail();
+      return true;
+    }
+  }
+
+  clearEmail() {
+    this.primaryEmail = '';
+    this.secondaryEmail = '';
+  }
+
+  editEmailRow(email: any) {
+    this.primaryEmail = email.primaryEmail;
+    this.secondaryEmail = email.secondaryEmail;
   }
 
   deleteEmailRow(index: number) {
-    if (this.addEmailRow.length == 1) {
+    if (this.emailList.length == 0) {
       return false;
     } else {
-      this.addEmailRow.splice(index, 1);
+      this.emailList.splice(index, 1);
       return true;
     }
   }

@@ -1,9 +1,9 @@
 
 <div class="EditPageHeader">
-  <div class="backBtnArea"><a class="TagBtn bg-purple" routerLink="/team" title="Back"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
+  <div class="backBtnArea"><a class="TagBtn bg-purple" routerLink="/queues" title="Back"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
   <div class="Header">
-    <h6 *ngIf="isAddMode">Add Team </h6>
-    <h6 *ngIf="!isAddMode">Edit Team </h6>
+    <h6 *ngIf="isAddMode">Add Queues </h6>
+    <h6 *ngIf="!isAddMode">Edit Queues </h6>
   </div>
   <div class="tagBtnArea">
     <button type="submit" *ngIf="isAddMode" class="btn buttonShape buttonGraphics saveBtn" title="Save">
@@ -19,38 +19,41 @@
   </div>
 </div>
 
-
-
 <div class="settingsFromSection">
   <div class="formArea">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="formSection">
-        <h4 class="sectionTitle">Team</h4>       
-        
+        <h4 class="sectionTitle">Roles</h4>
         <div class="mb-3 row">
-          <label for="" class="col-sm-2 col-form-label">Team Name</label>
+          <label for="" class="col-sm-2 col-form-label">Queues Name</label>
           <div class="col-sm-4">
             <div class="input-group">
               <input type="text" class="form-control">
             </div>
           </div>
-          <label for="" class="col-sm-2 col-form-label">List of Users</label>
+          <label for="" class="col-sm-2 col-form-label">Assignee</label>
           <div class="col-sm-4">
             <div class="input-group">
-              <ng-select [items]="userList"
-                         bindLabel="item_text"
-                         bindValue="item_id"
-                         [ngModelOptions]="{standalone: true}"
-                         [addTag]="addCustomUser"
-                         [multiple]="true"
-                         class="custom"
-                         placeholder="Select user"
-                         [(ngModel)]="selectedReportList">
-              </ng-select>
-              </div>
+              <input type="text" class="form-control">
             </div>
           </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="" class="col-sm-2 col-form-label">Assignor</label>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <select name="selectedassignor" formControlName="assignor" id="aantal" class="form-select">
+                <option *ngFor="let pt of assignorList" [value]="pt">{{pt}}</option>
+              </select>
+            </div>
+          </div>
+         
+        </div>
+        
+
+
       </div>
+
       <div class="formSubmitArea">
         <div class="mb-3 row">
           <div class="col-sm-12">

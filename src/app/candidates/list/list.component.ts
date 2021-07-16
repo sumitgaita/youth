@@ -13,6 +13,7 @@ export class ListComponent implements OnInit, OnDestroy {
   //@ViewChild('addTag') addTag: NgbModal;
   //modalOptions: NgbModalOptions;
   candidates = null;
+  allCandidates = null;
   /*closeResult: string;*/
   status: string;
   columnDefs;
@@ -45,18 +46,29 @@ export class ListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.candidates = [{
-      id: '1', candidatesName: 'Robart Harihoron', contactNumber: '098-7543', emailID: 'abc@gmail.com', dob: '12-04-2001', country: 'Canadian', workauthorization: 'Canadian Citizen', currentsalary:'$290'
+      id: '1', candidatesName: 'Robart Harihoron1', contactNumber: '098-7543', emailID: 'abc@gmail.com', dob: '12-04-2001', country: 'Canadian', workauthorization: 'Canadian Citizen', currentsalary:'$290'
     },
     {
-      id: '2', candidatesName: 'Robart Harihoron', contactNumber: '098-7543', emailID: 'abc@gmail.com', dob: '12-04-2001', country: 'Canadian', workauthorization: 'Canadian Citizen', currentsalary: '$290'
+      id: '2', candidatesName: 'Robart Harihoron2', contactNumber: '098-7543', emailID: 'abc@gmail.com', dob: '12-04-2001', country: 'Canadian', workauthorization: 'Canadian Citizen', currentsalary: '$290'
     },
     {
-      id: '3', candidatesName: 'Robart Harihoron', contactNumber: '098-7543', emailID: 'abc@gmail.com', dob: '12-04-2001', country: 'Canadian', workauthorization: 'Canadian Citizen', currentsalary: '$290'
+      id: '3', candidatesName: 'Robart Harihoron3', contactNumber: '098-7543', emailID: 'abc@gmail.com', dob: '12-04-2001', country: 'Canadian', workauthorization: 'Canadian Citizen', currentsalary: '$290'
     },
     {
-      id: '4', candidatesName: 'Robart Harihoron', contactNumber: '098-7543', emailID: 'abc@gmail.com', dob: '12-04-2001', country: 'Canadian', workauthorization: 'Canadian Citizen', currentsalary: '$290'
+      id: '4', candidatesName: 'Robart Harihoron4', contactNumber: '098-7543', emailID: 'abc@gmail.com', dob: '12-04-2001', country: 'Canadian', workauthorization: 'Canadian Citizen', currentsalary: '$290'
     }];
     // this.setupSubscription();
+    this.allCandidates = this.candidates;
+  }
+
+  search(value: string): void {
+    this.candidates = this.allCandidates;
+    if (value === "") {
+      this.candidates = this.candidates;
+    }
+    else {
+      this.candidates = this.candidates.filter((val) => val.candidatesName.toLowerCase().includes(value));
+    }
   }
 
   onGridReady(params: any) {

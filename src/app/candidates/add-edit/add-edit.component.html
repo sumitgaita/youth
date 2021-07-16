@@ -1,18 +1,18 @@
 <div class="EditPageHeader">
-  <div class="backBtnArea"><a class="TagBtn bg-purple" routerLink="/candidates"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
+  <div class="backBtnArea"><a class="TagBtn bg-purple" routerLink="/candidates" title="Back"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
   <div class="Header">
     <h6 *ngIf="isAddMode">Add Candidates</h6>
     <h6 *ngIf="!isAddMode">Edit Candidates</h6>
   </div>
   <div class="tagBtnArea">
-    <button type="submit" *ngIf="isAddMode" class="btn buttonShape buttonGraphics saveBtn">
+    <button type="submit" *ngIf="isAddMode" class="btn buttonShape buttonGraphics saveBtn" title="Save">
     <img src="./../assets/graphic_icon_save.jpg" class="img-fluid mx-auto d-block " />
     </button>
     
-    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics saveBtn">
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics saveBtn" title="Save">
       <img src="./../assets/graphic_icon_save.jpg" class="img-fluid mx-auto d-block " />
     </button>
-    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics deleteBtn">
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics deleteBtn" title="Delete">
       <img src="./../assets/graphic_icon_delete.jpg" class="img-fluid mx-auto d-block " />
     </button>
   

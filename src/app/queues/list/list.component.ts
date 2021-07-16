@@ -12,8 +12,8 @@ import { Subscription } from 'rxjs';
 })
 export class ListComponent implements OnInit, OnDestroy {
 
-  roles = null;
-  allRoles = null;
+  queues = null;
+  allQueues = null;
   columnDefs;
   private gridApi: any;
   private gridColumnApi: any;
@@ -21,8 +21,9 @@ export class ListComponent implements OnInit, OnDestroy {
   //private subscription: Subscription[] = [];
   constructor(private accountService: AccountService, private router: Router) {
     this.columnDefs = [
-      { headerName: 'Roles', width: 300, tooltipField: 'roles', field: 'roles', sortable: true, filter: true },
-      { headerName: 'Number Of Users', width: 200, tooltipField: 'numberofusers', field: 'numberofusers', sortable: true, filter: true }
+      { headerName: 'Queues Name', width: 300, tooltipField: 'queuesName', field: 'queuesName', sortable: true, filter: true },
+      { headerName: 'Assignee', width: 200, tooltipField: 'assignee', field: 'assignee', sortable: true, filter: true },
+      { headerName: 'Assignor', width: 200, tooltipField: 'assignor', field: 'assignor', sortable: true, filter: true }
     ];
   }
 
@@ -30,34 +31,35 @@ export class ListComponent implements OnInit, OnDestroy {
     //this.accountService.getAll()
     //    .pipe(first())
     //    .subscribe(users => this.users = users);
-    this.roles = [{ id: '1', roles: 'Accounts', numberofusers: 1, isDeleting: false },
-      { id: '1', roles: 'Administrator', numberofusers: 1, isDeleting: false },
-      { id: '1', roles: 'Account Manager', numberofusers: 1, isDeleting: false },
-      { id: '1', roles: 'HR Manager', numberofusers: 1, isDeleting: false }];
+    this.queues = [{ id: '1', queuesName: 'ABC ABC', assignee: 'HTRED LKGFDER', assignor: 'Individual', isDeleting: false },
+      { id: '1', queuesName: 'BCD HGFD', assignee: 'RTEWSW RRWWR', assignor: 'Source', isDeleting: false },
+      { id: '1', queuesName: 'ERSW JHRR', assignee: 'UJHTEW UITE', assignor: 'VMS', isDeleting: false },
+      { id: '1', queuesName: 'EWSAQ HTEW', assignee: 'NHGFDE HTREW', assignor: 'Source', isDeleting: false }];
     //this.setupSubscription();
-    this.allRoles = this.roles;
+    this.allQueues = this.queues;
   }
 
   search(value: string): void {
-    this.roles = this.allRoles;
+    this.queues = this.allQueues;
     if (value === "") {
-      this.roles = this.roles;
+      this.queues = this.queues;
     }
     else {
-      this.roles = this.roles.filter((val) => val.roles.toLowerCase().includes(value));
+      this.queues = this.queues.filter((val) => val.queuesName.toLowerCase().includes(value));
     }
   }
+
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.gridApi.setDatasource(this.roles);
+    this.gridApi.setDatasource(this.queues);
     this.gridApi.sizeColumnsToFit();
     window.onresize = () => {
       this.gridApi.sizeColumnsToFit();
     }
   }
   onCellClicked(event: any) {
-    this.router.navigate(['/roles/edit/' + event.data.id]);
+    this.router.navigate(['/queues/edit/' + event.data.id]);
   }
   ngOnDestroy() {
     //this.subscription.forEach(sub => {
@@ -79,11 +81,11 @@ export class ListComponent implements OnInit, OnDestroy {
 
   //}
   deleteUser(id: string) {
-    const user = this.roles.find(x => x.id === id);
+    const user = this.queues.find(x => x.id === id);
     user.isDeleting = true;
     this.accountService.delete(id)
       .pipe(first())
-      .subscribe(() => this.roles = this.roles.filter(x => x.id !== id));
+      .subscribe(() => this.queues = this.queues.filter(x => x.id !== id));
   }
 
 }

@@ -16,7 +16,7 @@ export class AddEditComponent implements OnInit {
   isAddMode: boolean;
   loading = false;
   submitted = false;
-  //moduleNameList: string[] = ['Company', 'Contacts', 'Campign', 'Sales Pipeline', 'Openings', 'Candidates', 'Calendar', 'Reports', 'Settings'];
+  assignorList: string[] = ['Individual', 'Source', 'VMS'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,7 +41,7 @@ export class AddEditComponent implements OnInit {
       //lastName: ['', Validators.required],
       //username: ['', Validators.required],
       //password: ['', passwordValidators]
-      moduleName: ['Company']
+      assignor: ['Individual']
     });
 
     if (!this.isAddMode) {

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpEvent, HttpRequest, Htt
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { environment } from '@environments/environment';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class HttpService {
   currentUser: any;
@@ -13,26 +13,23 @@ export class HttpService {
 
   outSiteGet<T>(url: string): Observable<T> {
     return this.http.get<T>(this.getFullUrl(url))
-      .do((res: any) => {
+      .pipe(tap((res: any) => {
         this.onSuccess(res);
-      }, (error: HttpErrorResponse) => {
-        this.onError(error, url);
-      })
-      .finally(() => {
-
-      });
+      },
+        (error: HttpErrorResponse) => {
+          this.onError(error, url);
+        }),
+      );
   }
 
   get<T>(url: string): Observable<T> {
     return this.http.get<T>(this.getFullUrl(url), { headers: this.getRequestHeader() })
-      .do((res: any) => {
+      .pipe(tap((res: any) => {
         this.onSuccess(res);
       }, (error: HttpErrorResponse) => {
         this.onError(error, url);
-      })
-      .finally(() => {
-
-      });
+      }),
+      );
   }
 
   upload<T>(url: string, data: any): Observable<HttpEvent<T>> {
@@ -40,40 +37,42 @@ export class HttpService {
       'POST', this.getFullUrl(url), data, { reportProgress: true }
     );
     return this.http.request<T>(req)
-      .do((res: any) => {
+      .pipe(tap((res: any) => {
         this.onSuccess(res);
       }, (error: HttpErrorResponse) => {
         this.onError(error, url);
-      });
+      }),
+      );
   }
 
   post<T>(url: string, jsonData: any): Observable<T> {
     return this.http.post<T>(this.getFullUrl(url), JSON.stringify(jsonData), { headers: this.getRequestHeader() })
-      .do((res: any) => {
+      .pipe(tap((res: any) => {
         this.onSuccess(res);
       }, (error: HttpErrorResponse) => {
         this.onError(error, url, jsonData);
-      }).finally(() => {
-
-      });
+      }),
+      );
   }
 
   put<T>(url: string, data: any): Observable<T> {
     return this.http.put<T>(this.getFullUrl(url), data, { headers: this.getRequestHeader() })
-      .do((res: any) => {
+      .pipe(tap((res: any) => {
         this.onSuccess(res);
       }, (error: HttpErrorResponse) => {
         this.onError(error, url, data);
-      });
+      }),
+      );
   }
 
   delete<T>(url: string): Observable<T> {
     return this.http.delete<T>(this.getFullUrl(url), { headers: this.getRequestHeader() })
-      .do((res: any) => {
+      .pipe(tap((res: any) => {
         this.onSuccess(res);
       }, (error: HttpErrorResponse) => {
         this.onError(error, url);
-      });
+      }),
+      );
   }
 
   getLoginToken<T>(username: string, password: string): Observable<T> {
@@ -82,13 +81,12 @@ export class HttpService {
       .set('username', (username))
       .set('password', password)
     return this.http.post<T>(`${environment.apiUrl}/token`, body.toString())
-      .do((res: any) => {
+      .pipe(tap((res: any) => {
         this.onSuccess(res);
       }, (error: HttpErrorResponse) => {
         this.onError(error, `${environment.apiUrl}/token`, username);
-      }).finally(() => {
-
-      });
+      }),
+      );
   }
 
   private getRequestHeader(): HttpHeaders {
@@ -100,12 +98,12 @@ export class HttpService {
       'If-Modified-Since': '0'
     });
   }
-  
+
 
   private getFullUrl(url: string): string {
     return `${environment.apiUrl}/api/` + url;
   }
- 
+
   private onSuccess(res: any): any {
     return res;
   }

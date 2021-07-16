@@ -10,6 +10,7 @@ import { NotesComponent } from './notes/notes.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { AgGridModule } from 'ag-grid-angular';
 import { MatTabsModule } from '@angular/material/tabs';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +19,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatTabsModule,
     FormsModule,
     CKEditorModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    NgSelectModule
   ],
   declarations: [
     LayoutComponent,

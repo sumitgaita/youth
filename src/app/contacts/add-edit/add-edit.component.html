@@ -1,22 +1,22 @@
 
 <div class="EditPageHeader">
-  <div class="backBtnArea"><a class="TagBtn bg-purple" routerLink="/contacts"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
+  <div class="backBtnArea"><a class="TagBtn bg-purple" routerLink="/contacts" title="Back"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
   <div class="Header">
     <h6 *ngIf="isAddMode">Add Contacts </h6>
     <h6 *ngIf="!isAddMode">Edit Contacts </h6>
   </div>
   <div class="tagBtnArea">
-    <button type="submit" *ngIf="isAddMode" class="btn buttonShape buttonGraphics saveBtn">
-      <img src="./../assets/graphic_icon_save.jpg" class="img-fluid mx-auto d-block " />
+    <button type="submit" *ngIf="isAddMode" class="btn buttonShape buttonGraphics saveBtn" title="Save">
+      <img src="./../assets/graphic_icon_save.png" class="img-fluid mx-auto d-block " />
     </button>
 
-    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics saveBtn">
-      <img src="./../assets/graphic_icon_save.jpg" class="img-fluid mx-auto d-block " />
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics saveBtn" title="Save">
+      <img src="./../assets/graphic_icon_save.png" class="img-fluid mx-auto d-block " />
     </button>
-    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics deleteBtn">
-      <img src="./../assets/graphic_icon_delete.jpg" class="img-fluid mx-auto d-block " />
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics deleteBtn" title="Delete">
+      <img src="./../assets/graphic_icon_delete.png" class="img-fluid mx-auto d-block " />
     </button>
-    <a class="TagBtn bg-blue buttonShape" (click)="openPopup()"><i class="fa fa-tag" aria-hidden="true"></i></a>
+    <a class="TagBtn bg-blue buttonShape" (click)="openPopup()" title="Tag"><i class="fa fa-tag" aria-hidden="true"></i></a>
   </div>
 </div>
 
@@ -34,47 +34,57 @@
 
         <mat-tab label="General">
           <!--<div class="formSection">
-          <h4 class="sectionTitle">General</h4>-->
+  <h4 class="sectionTitle">General</h4>-->
           <div class="mb-3 row">
-            <label for="" class="col-sm-2 col-form-label">Title</label>
-            <div class="col-sm-4">
+            <label for="" class="col-sm-1 col-form-label">Title</label>
+            <div class="col-sm-5">
               <div class="input-group">
                 <select name="selectedtitle" formControlName="title" id="aantal" class="form-select">
                   <option *ngFor="let st of titleList" [value]="st">{{st}}</option>
                 </select>
               </div>
             </div>
-            <label for="" class="col-sm-2 col-form-label">First Name</label>
-            <div class="col-sm-4">
+            <label for="" class="col-sm-1 col-form-label">First Name</label>
+            <div class="col-sm-5">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="First Name">
               </div>
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="" class="col-sm-2 col-form-label">Last Name</label>
-            <div class="col-sm-4">
+            <label for="" class="col-sm-1 col-form-label">Last Name</label>
+            <div class="col-sm-5">
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Last Name">
               </div>
             </div>
-            <label for="" class="col-sm-2 col-form-label">Office Number</label>
-            <div class="col-sm-4">
-              <div class="input-group">
-                <span class="input-group-text" id="basic-addon1">
-                  <select name="countryCode" id="">
-                    <option data-countryCode="US" value="1">USA (+1)</option>
-                    <option data-countryCode="CA" value="1">Canada (+1)</option>
-                    <option data-countryCode="MX" value="52">Mexico (+52)</option>
-                  </select>
-                </span>
-                <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
+            <label for="" class="col-sm-1 col-form-label">Office Number</label>
+            <div class="col-sm-5">
+              <div class="row">
+                <div class="col-sm-7">
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                      <select name="countryCode" id="">
+                        <option data-countryCode="US" value="1">USA (+1)</option>
+                        <option data-countryCode="CA" value="1">Canada (+1)</option>
+                        <option data-countryCode="MX" value="52">Mexico (+52)</option>
+                      </select>
+                    </span>
+                    <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
+                  </div>  
+                </div>
+                <div class="col-sm-1">
+                  <p class="midTxt">Ext.</p>
+                </div>
+                <div class="col-sm-4">
+                  <input type="number" class="form-control" placeholder="ex. 98xxx 125xx">
+                </div>
               </div>
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="" class="col-sm-2 col-form-label">Home Number</label>
-            <div class="col-sm-4">
+            <label for="" class="col-sm-1 col-form-label">Home Number</label>
+            <div class="col-sm-5">
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon1">
                   <select name="countryCode" id="">
@@ -86,8 +96,8 @@
                 <input type="text" class="form-control" id="" placeholder="ex. 98xxx 125xx" value="">
               </div>
             </div>
-            <label for="" class="col-sm-2 col-form-label">Office Number</label>
-            <div class="col-sm-4">
+            <label for="" class="col-sm-1 col-form-label">Mobile Number</label>
+            <div class="col-sm-5">
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon1">
                   <select name="countryCode" id="">
@@ -101,27 +111,15 @@
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="" class="col-sm-2 col-form-label">Office Email Address</label>
-            <div class="col-sm-4">
+            <label for="" class="col-sm-1 col-form-label">Office Email Address</label>
+            <div class="col-sm-5">
               <input type="text" class="form-control" id="" placeholder="Office Email Address" value="">
             </div>
-            <label for="" class="col-sm-2 col-form-label">Personal Email Address</label>
-            <div class="col-sm-4">
+            <label for="" class="col-sm-1 col-form-label">Personal Email Address</label>
+            <div class="col-sm-5">
               <input type="text" class="form-control" id="" placeholder="Alternate Email Address" value="">
             </div>
           </div>
-          <!--<div class="row">
-            <label for="" class="col-sm-3 col-form-label">Personal Home address</label>
-            <div class="col-sm-12">
-              <textarea class="form-control" id="" rows="3" placeholder="Personal Home address"></textarea>
-            </div>
-
-          </div>-->
-          <!--</div>-->
-        </mat-tab>
-        <!--<div class="formSection">
-        <h4 class="sectionTitle">Company</h4>-->
-        <mat-tab label="Company">
           <div class="mb-3 row">
             <div class="col-sm-6">
               <label for="" class="form-label">Current Company</label>
@@ -132,7 +130,7 @@
               <input type="text" class="form-control" id="" placeholder="Type Country" value="">
             </div>
           </div>
-          <div class="row">
+          <div class="mb-3 row">
             <div class="col-sm-6">
               <label for="" class="form-label">Address</label>
               <textarea class="form-control" id="" rows="5"></textarea>
@@ -157,18 +155,6 @@
             </div>
 
           </div>
-          <!--<div class="mb-3 row">
-                    <label for="" class="col-sm-3 col-form-label">Company Details</label>
-                    <div class="col-sm-12">
-                      <textarea class="form-control" id="" rows="5" placeholder="Company Details"></textarea>
-                    </div>
-
-                  </div>
-          </div>-->
-        </mat-tab>
-        <!--<div class="formSection">
-        <h4 class="sectionTitle">Preferences</h4>-->
-        <mat-tab label="Preferences">
           <div class="mb-3 row">
             <div class="col-sm-4">
               <label for="" class="form-label">Preferred Email Address</label>
@@ -202,6 +188,91 @@
                 <option *ngFor="let pt of preferredModeList" [value]="pt">{{pt}}</option>
               </select>
             </div>
+          </div>
+        </mat-tab>
+        <!--<div class="formSection">
+        <h4 class="sectionTitle">Company</h4>-->
+        <!--<mat-tab label="Company">-->
+          <!--<div class="mb-3 row">
+            <div class="col-sm-6">
+              <label for="" class="form-label">Current Company</label>
+              <input type="text" class="form-control" id="" placeholder="Current Company" value="">
+            </div>
+            <div class="col-sm-6">
+              <label for="" class="form-label">Designation</label>
+              <input type="text" class="form-control" id="" placeholder="Type Country" value="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <label for="" class="form-label">Address</label>
+              <textarea class="form-control" id="" rows="5"></textarea>
+            </div>
+            <div class="col-sm-6">
+              <div class="mb-3 row">
+                <div class="col-sm-6">
+                  <label for="" class="form-label">City</label>
+                  <input type="text" class="form-control" id="" placeholder="Type City" value="">
+                </div>
+                <div class="col-sm-6">
+                  <label for="" class="form-label">State</label>
+                  <input type="text" class="form-control" id="" placeholder="Type State" value="">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <div class="col-sm-6">
+                  <label for="" class="form-label">Country</label>
+                  <input type="text" class="form-control" id="" placeholder="Type Country" value="">
+                </div>
+              </div>
+            </div>
+
+          </div>-->
+          <!--<div class="mb-3 row">
+                    <label for="" class="col-sm-3 col-form-label">Company Details</label>
+                    <div class="col-sm-12">
+                      <textarea class="form-control" id="" rows="5" placeholder="Company Details"></textarea>
+                    </div>
+
+                  </div>
+          </div>-->
+        <!--</mat-tab>-->
+        <!--<div class="formSection">
+        <h4 class="sectionTitle">Preferences</h4>-->
+        <!--<mat-tab label="Preferences">-->
+          <!--<div class="mb-3 row">
+            <div class="col-sm-4">
+              <label for="" class="form-label">Preferred Email Address</label>
+              <select name="selectedpreferredtime" formControlName="preferredEmailMode" id="aantal" class="form-select">
+                <option *ngFor="let pt of preferredModeEmailList" [value]="pt">{{pt}}</option>
+              </select>
+            </div>
+            <div class="col-sm-8">
+              <div class="mb-3 row">
+                <div class="col-sm-6">
+                  <label for="" class="form-label">Preferred Phone Number</label>
+                  <select name="selectedpreferredtime" formControlName="preferredPhoneMode" id="aantal" class="form-select">
+                    <option *ngFor="let pt of preferredModePhoneList" [value]="pt">{{pt}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label for="" class="form-label">Preferred time to Contact</label>
+                  <select name="selectedpreferredtime" formControlName="preferredtime" id="aantal" class="form-select">
+                    <option *ngFor="let pt of preferredtimeList" [value]="pt">{{pt}}</option>
+                  </select>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label for="" class="form-label">Preferred Mode of Contact</label>
+              <select name="selectedpreferredtime" formControlName="preferredMode" id="aantal" class="form-select">
+                <option *ngFor="let pt of preferredModeList" [value]="pt">{{pt}}</option>
+              </select>
+            </div>-->
             <!--<div class="col-sm-4">
               <label for="" class="form-label">connections</label>
               <select name="selectedpreferredtime" formControlName="connections" id="aantal" class="form-select">
@@ -212,9 +283,9 @@
               <label for="" class="form-label"></label>
               <input type="text" class="form-control" id="" placeholder="Connections To" value="">
             </div>-->
-          </div>
           <!--</div>-->
-        </mat-tab>
+          <!--</div>-->
+        <!--</mat-tab>-->
         <!--<div class="formSection">
         <h4 class="sectionTitle">Connections</h4>-->
         <mat-tab label="Connections">
@@ -242,13 +313,26 @@
           <div class="mb-3 row">
             <div class="col-sm-6">
               <label for="" class="form-label">connections</label>
-              <select name="selectedpreferredtime" formControlName="connections" id="aantal" class="form-select">
+              <select name="selectedpreferredtime" #myconnections (change)='onConnectionsSelected(myconnections.value)' formControlName="connections" id="aantal" class="form-select">
                 <option *ngFor="let pt of connectionsList" [value]="pt">{{pt}}</option>
               </select>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6" *ngIf="isRelatedto">
               <label for="" class="form-label">Name</label>
               <input type="text" class="form-control" id="" placeholder="Connections To" value="">
+            </div>
+            <div class="col-sm-6" *ngIf="!isRelatedto">
+              <label for="" class="form-label">Name</label>
+              <ng-select [items]="userList"
+                         bindLabel="item_text"
+                         bindValue="item_id"
+                         [ngModelOptions]="{standalone: true}"
+                         [addTag]="addCustomUser"
+                         [multiple]="true"
+                         class="custom"
+                         placeholder="Select contacts"
+                         [(ngModel)]="selectedReportList">
+              </ng-select>
             </div>
           </div>
           <!--</div>-->
@@ -257,24 +341,24 @@
         <h4 class="sectionTitle">Social Footprint</h4>-->
         <mat-tab label="Social Footprint">
           <div class="mb-2 row">
-            <label for="" class="col-sm-1"><a class="TagBtn bg-linkedIn"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></label>
+            <label for="" class="col-sm-1"><a class="TagBtn bg-linkedIn" title="linkedin" (click)="SocialFootprint('linkedin')"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></label>
             <div class="col-sm-4">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="linkedin">
+                <input type="text" class="form-control" [(ngModel)]="linkedin" id="linkedin" [ngModelOptions]="{standalone: true}" placeholder="linkedin">
               </div>
             </div>
-            <label for="" class="col-sm-1"><a class="TagBtn bg-fb"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></label>
+            <label for="" class="col-sm-1"><a class="TagBtn bg-fb" title="facebook" (click)="SocialFootprint('facebook')"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></label>
             <div class="col-sm-4">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="facebook">
+                <input type="text" class="form-control" [(ngModel)]="facebook" id="facebook" [ngModelOptions]="{standalone: true}" placeholder="facebook">
               </div>
             </div>
           </div>
           <div class="row">
-            <label for="" class="col-sm-1"><a class="TagBtn bg-insta"><i class="fa fa-instagram" aria-hidden="true"></i></a></label>
+            <label for="" class="col-sm-1"><a class="TagBtn bg-insta" title="instagram" (click)="SocialFootprint('instagram')"><i class="fa fa-instagram" aria-hidden="true"></i></a></label>
             <div class="col-sm-4">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="instagram">
+                <input type="text" class="form-control" [(ngModel)]="instagram" id="instagram" [ngModelOptions]="{standalone: true}" placeholder="instagram">
               </div>
             </div>
           </div>

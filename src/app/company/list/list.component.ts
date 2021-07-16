@@ -13,9 +13,10 @@ export class ListComponent implements OnInit, OnDestroy {
   //@ViewChild('addTag') addTag: NgbModal;
   //modalOptions: NgbModalOptions;
   company = null;
+  allCompany = null;
   /*closeResult: string;*/
   status: string;
-  statusList: string[] = ['Active', 'Inactive'];
+  statusList: string[] = ['All', 'Active', 'Inactive'];
   columnDefs;
   private gridApi: any;
   private gridColumnApi: any;
@@ -39,7 +40,7 @@ export class ListComponent implements OnInit, OnDestroy {
       { headerName: 'Email ID', field: 'emailID', tooltipField: 'emailID', tooltipComponentParams: { color: '#ececec' }, sortable: true, filter: true },
       { headerName: 'Primary Location', width: 150, field: 'primaryLocation', tooltipField: 'primaryLocation', tooltipComponentParams: { color: '#ececec' }, sortable: true, filter: true },
       {
-        headerName: 'Status', width: 100, field: '', cellRenderer: function (param: any) {
+        headerName: 'Status', width: 100, field: '', tooltipField: 'status', cellRenderer: function (param: any) {
           if (param.data.id !== '') {
             const eDiv = document.createElement('div');
             let cellDef = '';
@@ -56,7 +57,7 @@ export class ListComponent implements OnInit, OnDestroy {
             eDiv.innerHTML = cellDef;
             if (eDiv.querySelector('.companynamecell')) {
               eDiv.querySelector('.companynamecell').addEventListener('click', (ev: any) => {
-               // AccountService.onEditUsersRow.emit({ data: param.data });
+                // AccountService.onEditUsersRow.emit({ data: param.data });
               })
             }
             return eDiv;
@@ -64,27 +65,47 @@ export class ListComponent implements OnInit, OnDestroy {
         },
         sortable: false
       }
-      
+
     ];
   }
 
   ngOnInit() {
-    this.status = 'Active';
+    this.status = 'All';
     this.company = [{
       id: '1', companyName: 'Company Name1', website: 'wwww.google.com', contactNumber: 'Contact Number1', emailID: 'Email ID1', primaryLocation: 'Torento', status: 'Active', isDeleting: false
     },
     {
-      id: '2', companyName: 'Company Name1', website: 'wwww.google.com', contactNumber: 'Contact Number2', emailID: 'Email ID2', primaryLocation: 'Torento', status: 'Inactive', isDeleting: false
+      id: '2', companyName: 'Company Name2', website: 'wwww.google.com', contactNumber: 'Contact Number2', emailID: 'Email ID2', primaryLocation: 'Torento', status: 'Inactive', isDeleting: false
     },
     {
-      id: '3', companyName: 'Company Name1', website: 'wwww.google.com', contactNumber: 'Contact Number3', emailID: 'Email ID3', primaryLocation: 'Torento', status: 'Inactive', isDeleting: false
+      id: '3', companyName: 'Company Name3', website: 'wwww.google.com', contactNumber: 'Contact Number3', emailID: 'Email ID3', primaryLocation: 'Torento', status: 'Inactive', isDeleting: false
     },
     {
-      id: '4', companyName: 'Company Name', website: 'wwww.google.com', contactNumber: 'Contact Number4', emailID: 'Email ID4', primaryLocation: 'Torento', status: 'Active', isDeleting: false
+      id: '4', companyName: 'Company Name4', website: 'wwww.google.com', contactNumber: 'Contact Number4', emailID: 'Email ID4', primaryLocation: 'Torento', status: 'Active', isDeleting: false
     }];
     // this.setupSubscription();
+    this.allCompany = this.company;
   }
 
+  search(value: string): void {
+    this.company = this.allCompany;
+    if (value === "") {
+      this.company = this.company;
+    }
+    else {
+      this.company = this.company.filter((val) => val.companyName.toLowerCase().includes(value));
+    }
+  }
+
+  changeStatus() {
+    this.company = this.allCompany;
+    if (this.status === "All") {
+      this.company = this.company;
+    }
+    else {
+      this.company = this.company.filter((val) => val.status.includes(this.status));
+    }
+  }
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -99,8 +120,7 @@ export class ListComponent implements OnInit, OnDestroy {
   //  this.gridApi.paginationSetPageSize(Number(event.target.value));
   //}
   onCellClicked(event: any) {
-    debugger;
-    if (event.colDef.headerName ==='Status') {
+    if (event.colDef.headerName === 'Status') {
 
     }
     else {

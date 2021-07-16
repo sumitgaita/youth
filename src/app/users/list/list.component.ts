@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class ListComponent implements OnInit, OnDestroy {
   users = null;
+  allUsers = null;
   columnDefs;
   private gridApi: any;
   private gridColumnApi: any;
@@ -30,11 +31,22 @@ export class ListComponent implements OnInit, OnDestroy {
     //this.accountService.getAll()
     //    .pipe(first())
     //    .subscribe(users => this.users = users);
-    this.users = [{ id: '1', name: 'sumit', emailAddress: 'sumit@gmail.com', phoneNumber: '556546546546', username: 'ABCTYRE', isDeleting: false },
-    { id: '2', name: 'sumit', emailAddress: 'sumit@gmail.com', phoneNumber: '65765675675', username: 'ABCTYRE', isDeleting: false },
-    { id: '3', name: 'sumit', emailAddress: 'sumit@gmail.com', phoneNumber: '65656456', username: 'ABCTYRE', isDeleting: false },
-    { id: '4', name: 'sumit', emailAddress: 'sumit@gmail.com', phoneNumber: '765765875765', username: 'ABCTYRE', isDeleting: false }];
+    this.users = [{ id: '1', name: 'Amit', emailAddress: 'sumit@gmail.com', phoneNumber: '556546546546', username: 'ABCTYRE', isDeleting: false },
+    { id: '2', name: 'Anup', emailAddress: 'sumit@gmail.com', phoneNumber: '65765675675', username: 'ABCTYRE', isDeleting: false },
+    { id: '3', name: 'Arpita', emailAddress: 'sumit@gmail.com', phoneNumber: '65656456', username: 'ABCTYRE', isDeleting: false },
+    { id: '4', name: 'Avirup', emailAddress: 'sumit@gmail.com', phoneNumber: '765765875765', username: 'ABCTYRE', isDeleting: false }];
    // this.setupSubscription();
+    this.allUsers = this.users;
+  }
+
+  search(value: string): void {
+    this.users = this.allUsers;
+    if (value === "") {
+      this.users = this.users;
+    }
+    else {
+      this.users = this.users.filter((val) => val.name.toLowerCase().includes(value));
+    }
   }
 
   onGridReady(params: any) {

@@ -3,14 +3,12 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\candidates",
-    "\\src\\app\\roles",
-    "\\src\\app\\team",
-    "\\src\\app\\team\\add-edit",
-    "\\src\\app\\users",
+    "\\src\\app\\company\\notes",
+    "\\src\\app\\massemail",
+    "\\src\\app\\massemail\\list",
     "\\src\\app\\users\\add-edit",
-    "\\src\\assets"
+    "\\src\\app\\users\\list"
   ],
-  "SelectedNode": "\\src\\app\\candidates\\advancedsearch\\advancedsearch.component.html",
+  "SelectedNode": "\\src\\app\\massemail\\list\\list.component.html",
   "PreviewInSolutionExplorer": false
 }
