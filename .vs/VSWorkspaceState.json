@@ -3,12 +3,8 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\company\\notes",
-    "\\src\\app\\massemail",
-    "\\src\\app\\massemail\\list",
-    "\\src\\app\\users\\add-edit",
-    "\\src\\app\\users\\list"
+    "\\src\\app\\_services"
   ],
-  "SelectedNode": "\\src\\app\\massemail\\list\\list.component.html",
+  "SelectedNode": "\\src\\app\\_services\\http.service.ts",
   "PreviewInSolutionExplorer": false
 }

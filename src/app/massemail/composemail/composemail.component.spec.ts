@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdvancedsearchComponent } from './advancedsearch.component';
+import { ComposemailComponent } from './composemail.component';
 
-describe('AddEditComponent', () => {
-  let component: AdvancedsearchComponent;
-  let fixture: ComponentFixture<AdvancedsearchComponent>;
+describe('ComposemailComponent', () => {
+  let component: ComposemailComponent;
+  let fixture: ComponentFixture<ComposemailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AdvancedsearchComponent ]
+      declarations: [ ComposemailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdvancedsearchComponent);
+    fixture = TestBed.createComponent(ComposemailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
