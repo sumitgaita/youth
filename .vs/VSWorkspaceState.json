@@ -3,8 +3,11 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\_services"
+    "\\src\\app\\bulkupload",
+    "\\src\\app\\bulkupload\\list",
+    "\\src\\app\\candidates",
+    "\\src\\app\\candidates\\list"
   ],
-  "SelectedNode": "\\src\\app\\_services\\http.service.ts",
+  "SelectedNode": "\\src\\app\\bulkupload\\list\\list.component.ts",
   "PreviewInSolutionExplorer": false
 }

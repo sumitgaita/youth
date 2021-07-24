@@ -15,6 +15,7 @@ const talentModule = () => import('./talent/talent.module').then(x => x.TalentMo
 const candidatesModule = () => import('./candidates/candidates.module').then(x => x.CandidatesModule);
 const queuesModule = () => import('./queues/queues.module').then(x => x.QueuesModule);
 const massemailModule = () => import('./massemail/massemail.module').then(x => x.MassemailModule);
+const bulkuploadModule = () => import('./bulkupload/bulkupload.module').then(x => x.BulkuploadModule);
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'candidates', loadChildren: candidatesModule, canActivate: [AuthGuard] },
   { path: 'queues', loadChildren: queuesModule, canActivate: [AuthGuard] },
   { path: 'massemail', loadChildren: massemailModule, canActivate: [AuthGuard] },
+  { path: 'bulkupload', loadChildren: bulkuploadModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
 
   // otherwise redirect to home

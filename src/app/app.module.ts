@@ -16,7 +16,6 @@ import { AlertComponent } from './share';
 import { HomeComponent } from './home';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 @NgModule({
   imports: [
     NgbModule,
