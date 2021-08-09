@@ -11,6 +11,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AdvancedsearchComponent } from './advancedsearch/advancedsearch.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { CKEditorModule } from 'ckeditor4-angular';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,7 +24,10 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     MatSlideToggleModule,
     FormsModule,
     AgGridModule.withComponents([]),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    NgxDocViewerModule,
+    CKEditorModule,
+    NgSelectModule
   ],
   declarations: [
     LayoutComponent,

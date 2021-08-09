@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -11,6 +11,7 @@ import { AccountService, AlertService } from '@app/_services';
   styleUrls: ['./advancedsearch.component.less']
 })
 export class AdvancedsearchComponent implements OnInit {
+  @Output() isVisibleEvent = new EventEmitter();
   //@ViewChild('addTag') addTag: NgbModal;
   //modalOptions: NgbModalOptions;
   //closeResult: string;
@@ -64,6 +65,10 @@ export class AdvancedsearchComponent implements OnInit {
     //this.addEmailRow.push(this.newAddressRow);
   }
 
+
+  isListingVisible() {
+    this.isVisibleEvent.emit();
+  }
   // convenience getter for easy access to form fields
   //get f() { return this.form.controls; }
 

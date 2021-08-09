@@ -25,8 +25,9 @@ export class AddEditComponent implements OnInit {
   preferredtimeList: string[] = ['Morning', 'Afternoon', 'Evening'];
   connectionsList: string[] = ['Related to', 'Referred by', 'Reports To'];
   preferredModePhoneList: string[] = ['Offical', 'Home', 'Mobile'];
-  preferredModeList: string[] = ['Phone', 'email'];
+  preferredModeList: string[] = ['Phone', 'Email'];
   preferredModeEmailList: string[] = ['Personal', 'Offical'];
+  countryList: string[] = ['USA', 'Mexico', 'Canada', 'India'];
   @ViewChild('ContractContent') ContractContent: any;
   content: string;
   name = 'ng4-ckeditor';
@@ -76,7 +77,8 @@ export class AddEditComponent implements OnInit {
       connections: ['Related to'],
       preferredMode: [''],
       preferredEmailMode: [''],
-      preferredPhoneMode: ['']
+      preferredPhoneMode: [''],
+      country: ['']
     });
 
     if (!this.isAddMode) {
@@ -124,7 +126,15 @@ export class AddEditComponent implements OnInit {
     return true;
 
   }
-
+  backContractsList() {
+    const isFromCompany = JSON.parse(localStorage.getItem('fromCompany'));
+    if (isFromCompany && isFromCompany.id.length > 0) {
+      this.router.navigate(['/company/edit/' + isFromCompany.id]);
+    }
+    else {
+      this.router.navigate(['/contacts']);
+    }
+  }
   SocialFootprint(social: string) {
     if (social === 'linkedin' && this.linkedin && this.linkedin !== '') {
       window.open(this.linkedin, '_blank');

@@ -3,11 +3,13 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\bulkupload",
-    "\\src\\app\\bulkupload\\list",
     "\\src\\app\\candidates",
-    "\\src\\app\\candidates\\list"
+    "\\src\\app\\candidates\\add-edit",
+    "\\src\\app\\company",
+    "\\src\\app\\company\\add-edit",
+    "\\src\\app\\users",
+    "\\src\\app\\users\\add-edit"
   ],
-  "SelectedNode": "\\src\\app\\bulkupload\\list\\list.component.ts",
+  "SelectedNode": "\\src\\app\\candidates\\add-edit\\add-edit.component.html",
   "PreviewInSolutionExplorer": false
 }

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { AccountService, AlertService } from '@app/_services';
+import { MatTabGroup } from "@angular/material/tabs";
 
 @Component({
   selector: 'app-add-edit',
@@ -12,6 +13,7 @@ import { AccountService, AlertService } from '@app/_services';
 })
 export class AddEditComponent implements OnInit {
   @ViewChild('addTag') addTag: NgbModal;
+  @ViewChild('#companyTab', { static: false }) companyTab: MatTabGroup;
   modalOptions: NgbModalOptions;
   closeResult: string;
   form: FormGroup;
@@ -20,6 +22,7 @@ export class AddEditComponent implements OnInit {
   loading = false;
   submitted = false;
   statusList: string[] = ['Active', 'Closed'];
+  countryList: string[] = ['USA', 'Mexico', 'Canada', 'India'];
   //addAddressRow: Array<any> = [];
   newAddressRow: any = {};
   addressList: Array<any> = [];
@@ -32,6 +35,7 @@ export class AddEditComponent implements OnInit {
   address: string;
   city: string;
   state: string;
+  zip: string;
   country: string;
   primaryEmail: string;
   secondaryEmail: string;
@@ -40,6 +44,13 @@ export class AddEditComponent implements OnInit {
   instagram: string = '';
   facebook: string = '';
   linkedin: string = '';
+  columnDefs;
+  private gridApi: any;
+  private gridColumnApi: any;
+  defaultPageSize = 10;
+  contacts = null;
+  selectedIndex: number;
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -47,12 +58,35 @@ export class AddEditComponent implements OnInit {
     private accountService: AccountService,
     private alertService: AlertService,
     private modalService: NgbModal
-  ) { }
+  ) {
+    this.columnDefs = [
+      {
+        headerName: 'Name',
+        field: 'fullName',
+        width: 170,
+        tooltipField: 'fullName',
+        sortable: true,
+        filter: true
+      },
+
+      { headerName: 'Designation', width: 170, tooltipField: 'designation', field: 'designation', sortable: true, filter: true },
+      { headerName: 'Location', width: 247, field: 'location', tooltipField: 'location', tooltipComponentParams: { color: '#ececec' }, sortable: true, filter: true },
+
+    ];
+  }
 
   ngOnInit() {
+    const isFromCompany = JSON.parse(localStorage.getItem('fromCompany'));
+    if (isFromCompany && isFromCompany.id.length > 0) {
+      this.selectedIndex = 3;
+      localStorage.removeItem('fromCompany');
+    }
+    else {
+      this.selectedIndex = 0;
+    }
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
-    this.website = 'www.google.com';
+    this.website = 'https://www.google.com/';
     this.instagram = 'https://www.instagram.com/';
     this.facebook = 'https://www.facebook.com/';
     this.linkedin = 'https://in.linkedin.com/';
@@ -80,11 +114,46 @@ export class AddEditComponent implements OnInit {
     //this.addAddressRow.push(this.newAddressRow);
     this.newEmailRow = { primaryEmail: '', secondaryEmail: '' };
     //this.addEmailRow.push(this.newAddressRow);
+
+    this.contacts = [{ id: '1', fullName: 'anit maity', location: 'Canada', designation: 'Account', status: 'Active', isDeleting: false },
+    { id: '2', fullName: 'arun maity', location: 'Canada', designation: 'Manager', status: 'Active', isDeleting: false },
+    { id: '3', fullName: 'sathis maity', location: 'Canada', designation: 'Software Developer', status: 'Inactive', isDeleting: false },
+    { id: '4', fullName: 'sumit maity', location: 'Canada', designation: 'HR', status: 'Inactive', isDeleting: false }];
+    //this.setupSubscription();
+    // this.selectCompantTabIndex(this.companyTab);
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.form.controls; }
+  onGridReady(params: any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.setDatasource(this.contacts);
+    this.gridApi.sizeColumnsToFit();
+    window.onresize = () => {
+      this.gridApi.sizeColumnsToFit();
+    }
+  }
+  onCellClicked(event: any) {
+    let fromCompany = { id: this.route.snapshot.params['id'], fromCompany: true };
+    localStorage.setItem('fromCompany', JSON.stringify(fromCompany));
+    this.router.navigate(['/contacts/edit/' + event.data.id]);
+  }
+  tabChange(event: any) {
+    if (event.tab.textLabel === 'Contacts') {
+      this.gridApi.sizeColumnsToFit();
+      window.onresize = () => {
+        this.gridApi.sizeColumnsToFit();
+      }
+    }
+  }
 
+  private selectCompantTabIndex(tabGroup: MatTabGroup) {
+    if (!tabGroup || !(tabGroup instanceof MatTabGroup)) return;
+
+    const tabCount = tabGroup._tabs.length;
+    tabGroup.selectedIndex = (tabGroup.selectedIndex + 1) % tabCount;
+  }
   onSubmit() {
     this.submitted = true;
 
@@ -168,19 +237,22 @@ export class AddEditComponent implements OnInit {
   }
   addAddressListRow() {
     if ((this.address && this.address !== '') && (this.city && this.city !== '')
-      && (this.state && this.state !== '') && (this.country && this.country !== '')) {
-      this.newAddressRow = { address: this.address, city: this.city, state: this.state, country: this.country };
+      && (this.state && this.state !== '') && (this.country && this.country !== '') && (this.zip && this.zip !== '')) {
+      this.newAddressRow = { address: this.address, city: this.city, state: this.state, zip: this.zip, country: this.country };
       this.addressList.push(this.newAddressRow);
       this.clearAddress();
       return true;
     }
   }
-
+  websiteClick() {
+    window.open(this.website, '_blank');
+  }
   clearAddress() {
     this.address = '';
     this.city = '';
     this.state = '';
     this.country = '';
+    this.zip = '';
   }
 
   editAddressRow(address: any) {
@@ -188,6 +260,7 @@ export class AddEditComponent implements OnInit {
     this.city = address.city;
     this.state = address.state;
     this.country = address.country;
+    this.zip = address.zip;
   }
   deleteAddressRow(index: number) {
     if (this.addressList.length == 0) {

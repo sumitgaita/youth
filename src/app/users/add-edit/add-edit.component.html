@@ -44,7 +44,15 @@
           <label for="" class="col-sm-2 col-form-label">Phone Number</label>
           <div class="col-sm-4">
             <div class="input-group">
-              <input type="text" class="form-control">
+              <span class="input-group-text" id="basic-addon1">
+                <select name="countryCode" id="">
+                  <option data-countryCode="US" value="1">USA (+1)</option>
+                  <option data-countryCode="CA" value="1">Canada (+1)</option>
+                  <option data-countryCode="MX" value="52">Mexico (+52)</option>
+                  <option data-countryCode="IN" value="91">India (+91)</option>
+                </select>
+              </span>
+              <input type="number" class="form-control">
             </div>
           </div>
           <label for="" class="col-sm-2 col-form-label">User name</label>

@@ -67,7 +67,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    localStorage.removeItem('fromCompany');
     this.contacts = [{ id: '1', fullName: 'anit maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', status: 'Active', isDeleting: false },
     { id: '2', fullName: 'arun maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', status: 'Active', isDeleting: false },
     { id: '3', fullName: 'sathis maity', location: 'Canada', companyName: 'ABC Company', primaryemailAddress: 'ABC@gmail.com', primaryPhoneNumber: '0222-87544', status: 'Inactive', isDeleting: false },

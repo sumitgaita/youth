@@ -1,20 +1,172 @@
 <div class="settingPanel companyheader">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    
-    <div class="companyActionDropdown">
-      <h1 class="headerTitle">Candidates</h1>     
-    </div>
-    <div class="col-md-6 titleActionArea">
-      <div class="col-md-6 px-md-2">
-        <div class="searchBox">
-          <input class="form-control searchCandidate" type="text" placeholder="Search by Candidates name" (change)="search($event.target.value)" aria-label="Search">
-          <a><img src="./../assets/loupe.svg" class="img-fluid " alt="icon"></a>
+  
+
+    <div class="candidatesTopSection">
+      
+        <div class="companyActionDropdown">
+          <h1 class="headerTitle">Candidates</h1>
+          <div class="candidateSection" *ngIf="isAdvanceSearchVisible">
+            <div class="formArea" [@.disabled]="true">
+              <mat-tab-group>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/idb_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    IDB - India
+                  </ng-template>
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/idb_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    IDB - Mexico
+                  </ng-template>
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/idb_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    IDB - USA
+                  </ng-template>
+
+
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/idb_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    IDB - Canada
+                  </ng-template>
+
+
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/idb_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    IDB  - Latam
+                  </ng-template>
+
+
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/monster_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    USA
+                  </ng-template>
+
+
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/dice_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    USA
+                  </ng-template>
+
+
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/career_builder_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    USA
+                  </ng-template>
+
+
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/monster_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    Canada
+                  </ng-template>
+
+
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/monster_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    India
+                  </ng-template>
+
+
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/naukri_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    India
+                  </ng-template>
+
+
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/empleos_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    Empleos IT
+                  </ng-template>
+
+
+                </mat-tab>
+
+                <mat-tab>
+
+                  <ng-template mat-tab-label>
+                    <mat-icon class="tabIcon">
+                      <img src="./../assets/occ_icon.png" class="img-fluid" alt="icon">
+                    </mat-icon>
+                    OCC Mundial
+                  </ng-template>
+
+
+                </mat-tab>
+
+              </mat-tab-group>
+            </div>
+          </div>
         </div>
+      
+      <div class="titleActionArea">
+        <div class="col-md-6 px-md-2">
+          <div class="searchBox">
+            <input class="form-control searchCandidate" type="text" placeholder="Search by Candidates name" (change)="search($event.target.value)" aria-label="Search">
+            <a><img src="./../assets/loupe.svg" class="img-fluid " alt="icon"></a>
+          </div>
+        </div>
+        <a (click)="adVanchSearchVisible()" class="TagBtn advanceSearchBtn" title="Advanced Search"><img src="./../assets/advanced_search.png" class="img-fluid " alt="icon"></a>
+        <a routerLink="add" class="TagBtn bg-blue" title="Add Candidates"><i class="fa fa-users" aria-hidden="true"></i></a>
       </div>
-      <a routerLink="advancedsearch" class="TagBtn advanceSearchBtn" title="Advanced Search"><img src="./../assets/advanced_search.png" class="img-fluid " alt="icon"></a>
-      <a routerLink="add" class="TagBtn bg-blue" title="Add Candidates"><i class="fa fa-users" aria-hidden="true"></i></a>
     </div>
-  </div>
+
+  
 
   <div class="settingsFromSection">
     <ag-grid-angular [domLayout]="'autoHeight'"
@@ -31,12 +183,41 @@
                      [columnDefs]="columnDefs">
     </ag-grid-angular>
     <!--Page Size:
-  <select (change)="onPageSizeChanged($event)">
-    <option value="10">10</option>
-    <option value="100">100</option>
-    <option value="500">500</option>
-    <option value="1000">1000</option>
-  </select>-->
+    <select (change)="onPageSizeChanged($event)">
+      <option value="10">10</option>
+      <option value="100">100</option>
+      <option value="500">500</option>
+      <option value="1000">1000</option>
+    </select>-->
 
   </div>
 </div>
+
+
+<!--<div *ngIf="isAdvanceSearchVisible">
+  <app-advancedsearch #advancedsearch (isVisibleEvent)="isListingVisible()"></app-advancedsearch>
+</div>-->
+
+<ng-template #viewResume let-modal>
+  <div class="customModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">View Resume</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')" style="outline:0;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 row">
+          <div class="col-sm-12">
+            <ngx-doc-viewer [url]="DemoDoc" [viewer]="viewer" style="width:100%;height:60vh;"></ngx-doc-viewer>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')"><i class="fa fa-ban" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+</ng-template>

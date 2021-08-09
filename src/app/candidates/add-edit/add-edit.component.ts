@@ -11,10 +11,15 @@ import { AccountService, AlertService } from '@app/_services';
   styleUrls: ['./add-edit.component.less']
 })
 export class AddEditComponent implements OnInit {
-  @ViewChild('addTag') addTag: NgbModal;
+  @ViewChild('addNotes') addNotes: NgbModal;
   modalOptions: NgbModalOptions;
   closeResult: string;
   form: FormGroup;
+  @ViewChild('ContractContent') ContractContent: any;
+  content: string;
+  name = 'ng4-ckeditor';
+  ckeConfig: any;
+  mycontent: string;
   id: string;
   isAddMode: boolean;
   loading = false;
@@ -23,7 +28,21 @@ export class AddEditComponent implements OnInit {
   workAuthorizationUsList: string[] = ['US Citizen', 'GC', 'GC EAD', 'H1B', 'H4 EAD', 'L1A', 'L1B', 'L2 EAD', 'TN Visa', 'E3 Visa', 'OPT', 'OPT TSEM', 'CPT', 'TPS', 'Ashylum & Others'];
   workAuthorizationCanadaList: string[] = ['Canadian Citizen', 'Permanent Resident', 'Work Permit - Closed', 'Work Permit - Open', 'Others'];
   workAuthorizationIndiaList: string[] = ['Indian Citizen', 'Permanet Resident', 'Others'];
-  countryList: string[] = ['US', 'Canada', 'India'];
+  countryList: string[] = ['USA', 'Mexico', 'Canada', 'India'];
+  documentTypeList: string[] = ['Resume', 'Work Authoazation', 'DL'];
+  relationshiplist: string[] = ['colleagues', 'reporting manager'];
+  instagram: string = '';
+  facebook: string = '';
+  linkedin: string = '';
+  skillsList = [];
+  selectedPrimarySkills = [];
+  selectedSecondarySkills = [];
+  addPrimarySkills = '';
+  addSecondarySkills = '';
+  highestQualificationList = [];
+  selectedHighestQualification = [];
+  addhighestqualification = '';
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -36,12 +55,19 @@ export class AddEditComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
+    this.instagram = 'https://www.instagram.com/';
+    this.facebook = 'https://www.facebook.com/';
+    this.linkedin = 'https://in.linkedin.com/';
     // password not required in edit mode
     const passwordValidators = [Validators.minLength(6)];
     if (this.isAddMode) {
       passwordValidators.push(Validators.required);
     }
-
+    this.ckeConfig = {
+      allowedContent: false,
+      extraPlugins: '',
+      forcePasteAsPlainText: true
+    };
     this.form = this.formBuilder.group({
       //firstName: ['', Validators.required],
       //lastName: ['', Validators.required],
@@ -49,6 +75,8 @@ export class AddEditComponent implements OnInit {
       //password: ['', passwordValidators]
       workAuthorization: ['', Validators.required],
       country: [''],
+      documentType: [''],
+      relationShip: [''],
       dOB: ['']
     });
 
@@ -57,6 +85,28 @@ export class AddEditComponent implements OnInit {
       //  .pipe(first())
       //  .subscribe(x => this.form.patchValue(x));
     }
+    setTimeout(() => {
+      this.skillsList = [
+        { item_id: 1, item_text: '.NET' },
+        { item_id: 2, item_text: 'ASP .NET' },
+        { item_id: 3, item_text: 'C#' },
+        { item_id: 4, item_text: 'Angular 2+' },
+        { item_id: 5, item_text: 'React Js' },
+        { item_id: 5, item_text: 'DevOps' },
+        { item_id: 5, item_text: 'Azure' },
+        { item_id: 5, item_text: 'Sql Server' }
+      ];
+      this.highestQualificationList = [
+        { item_id: 1, item_text: 'MCA' },
+        { item_id: 2, item_text: 'PG' },
+        { item_id: 3, item_text: 'Computer Application' },
+        { item_id: 4, item_text: 'Master' },
+        { item_id: 5, item_text: 'Bachelor of Arts' },
+        { item_id: 5, item_text: 'Bachelor of Science' },
+        { item_id: 5, item_text: 'Bachelor of Commerce' },
+        { item_id: 5, item_text: 'Bachelor of Engg./Tech' }
+      ];
+    }, 500);
     //this.newAddressRow = { address: '', city: '', state: '', country: '' };
     //this.addAddressRow.push(this.newAddressRow);
     //this.newEmailRow = { primaryEmail: '', secondaryEmail: '' };
@@ -67,7 +117,7 @@ export class AddEditComponent implements OnInit {
   get f() { return this.form.controls; }
   getWorkAuthorization() {
     this.workAuthorizationList = [];
-    if (this.f.country.value === 'US') {
+    if (this.f.country.value === 'USA') {
       this.workAuthorizationList = this.workAuthorizationUsList;
     }
     else if (this.f.country.value === 'Canada') {
@@ -77,6 +127,20 @@ export class AddEditComponent implements OnInit {
       this.workAuthorizationList = this.workAuthorizationIndiaList;
     }
   }
+
+  SocialFootprint(social: string) {
+    if (social === 'linkedin' && this.linkedin && this.linkedin !== '') {
+      window.open(this.linkedin, '_blank');
+    }
+    else if (social === 'facebook' && this.facebook && this.facebook !== '') {
+      window.open(this.facebook, '_blank');
+    }
+    else if (social === 'instagram' && this.instagram && this.instagram !== '') {
+      window.open(this.instagram, '_blank');
+    }
+
+  }
+
   onSubmit() {
     this.submitted = true;
 
@@ -126,64 +190,27 @@ export class AddEditComponent implements OnInit {
       });
   }
 
-  //openPopup() {
-  //  this.tagName = '';
-  //  this.openModel(this.addTag);
-  //}
+  openNotesPopup() {
+    this.openModel(this.addNotes);
+  }
 
-  //addTagList() {
-  //  this.taglist.push(this.tagName);
-  //  this.modalService.dismissAll();
-  //}
-  //tagRemove(index: number) {
-  //  this.taglist.splice(index, 1);
-  //  return true;
 
-  //}
-  //addAddressListRow() {
-  //  this.newAddressRow = { address: '', city: '', state: '', country: '' };
-  //  this.addAddressRow.push(this.newAddressRow);
-  //  return true;
-  //}
+  private openModel(content: any) {
+    this.modalService.open(content, { centered: true, backdrop: "static", size: "lg" }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
 
-  //deleteAddressRow(index: number) {
-  //  if (this.addAddressRow.length == 1) {
-  //    return false;
-  //  } else {
-  //    this.addAddressRow.splice(index, 1);
-  //    return true;
-  //  }
-  //}
-  //addEmailListRow() {
-  //  this.newEmailRow = { primaryEmail: '', secondaryEmail: '' };
-  //  this.addEmailRow.push(this.newEmailRow);
-  //  return true;
-  //}
-
-  //deleteEmailRow(index: number) {
-  //  if (this.addEmailRow.length == 1) {
-  //    return false;
-  //  } else {
-  //    this.addEmailRow.splice(index, 1);
-  //    return true;
-  //  }
-  //}
-  //private openModel(content: any) {
-  //  this.modalService.open(content, { centered: true, backdrop: "static", size: "lg" }).result.then((result) => {
-  //    this.closeResult = `Closed with: ${result}`;
-  //  }, (reason) => {
-  //    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  //  });
-  //}
-
-  //private getDismissReason(reason: any): string {
-  //  if (reason === ModalDismissReasons.ESC) {
-  //    return 'by pressing ESC';
-  //  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-  //    return 'by clicking on a backdrop';
-  //  } else {
-  //    return `with: ${reason}`;
-  //  }
-  //}
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 
 }

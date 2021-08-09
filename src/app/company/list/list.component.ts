@@ -70,6 +70,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    localStorage.removeItem('fromCompany');
     this.status = 'All';
     this.company = [{
       id: '1', companyName: 'Company Name1', website: 'wwww.google.com', contactNumber: 'Contact Number1', emailID: 'Email ID1', primaryLocation: 'Torento', status: 'Active', isDeleting: false
