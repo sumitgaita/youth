@@ -13,7 +13,7 @@ body {
   font-size: .875rem;
 }
 
-.ag-paging-panel {
+.ag-paging-panel{
   align-items: center;
   display: flex;
   justify-content: center;
@@ -30,8 +30,6 @@ a {
 a:focus, a:hover {
   text-decoration: none;
 }
-
-
 
 .feather {
   width: 16px;
@@ -55,7 +53,6 @@ button:hover, button:focus, button:active {
 .ml-10{
   margin-left: 10px;
 }
-
 
 
 /*
@@ -1719,7 +1716,39 @@ ul {
 @media only screen and (max-width: 1366px) {
 }
 
-@media (max-width: 767.98px) {
+@media only screen and (max-width: 767.98px) {
+
+  .modal-dialog.modal-lg, .modal-dialog.modal-xl {
+    max-width: 100% !important;
+}
+
+.candidatesTopSection .companyActionDropdown,
+.candidatesTopSection .titleActionArea{
+  width: 100%;
+  margin-top: 0px;
+}
+.dashboardBody .headerTitle{
+  font-size: 1rem;
+}
+.candidatesTopSection .titleActionArea .col-md-6.px-md-2{
+  width: 78%;
+}
+.companyActionDropdown .headerTitle {
+  font-size: 0.7rem;
+  margin: 0;
+  text-transform: uppercase;
+}
+.candidatesTopSection .companyActionDropdown{
+  margin-bottom: 10px;
+}
+.companyActionDropdown .candidateSection {
+  width: 82%;
+}
+.companyActionDropdown .form-select {
+  width: 100%;
+}
+
+
 
   /*--- mail box ---*/
   .mail-box .sm-side,
@@ -1790,5 +1819,19 @@ ul {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: pre;
+  }
+}
+
+
+@media only screen and (max-width: 360px) {
+  .navActionBtn.px-3, .navbar-brand.px-3{
+    padding-right: 0.5rem!important;
+    padding-left: 0.5rem!important;
+  }
+  .navbar-nav.navActionBtn .nav-link p{
+    font-size: 12px;
+  }
+  .navbar-nav .nav-link img {
+    max-width: 18px;
   }
 }
