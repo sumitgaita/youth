@@ -4,8 +4,10 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\candidates",
-    "\\src\\app\\candidates\\add-edit"
+    "\\src\\app\\candidates\\add-edit",
+    "\\src\\app\\roles",
+    "\\src\\app\\roles\\add-edit"
   ],
-  "SelectedNode": "\\src\\app\\candidates\\add-edit\\add-edit.component.html",
+  "SelectedNode": "\\src\\app\\roles\\add-edit\\add-edit.component.html",
   "PreviewInSolutionExplorer": false
 }
