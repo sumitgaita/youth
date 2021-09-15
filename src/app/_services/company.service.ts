@@ -8,5 +8,8 @@ export class CompanyService {
   
   constructor(private http: HttpService) { }
 
+  getAllCompany(): Observable<any> {
+    return this.http.get<any>('company/all');
+  }
 
 }

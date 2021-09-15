@@ -5,9 +5,12 @@
     "\\src\\app",
     "\\src\\app\\candidates",
     "\\src\\app\\candidates\\add-edit",
-    "\\src\\app\\roles",
-    "\\src\\app\\roles\\add-edit"
+    "\\src\\app\\contacts",
+    "\\src\\app\\contacts\\add-edit",
+    "\\src\\app\\openings",
+    "\\src\\app\\openings\\add-edit",
+    "\\src\\app\\openings\\list"
   ],
-  "SelectedNode": "\\src\\app\\roles\\add-edit\\add-edit.component.html",
+  "SelectedNode": "\\src\\app\\openings\\list\\list.component.html",
   "PreviewInSolutionExplorer": false
 }

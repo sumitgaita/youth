@@ -72,6 +72,7 @@ export class ListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     localStorage.removeItem('fromCompany');
     this.status = 'All';
+   // this.getAllCompany();
     this.company = [{
       id: '1', companyName: 'Company Name1', website: 'wwww.google.com', contactNumber: 'Contact Number1', emailID: 'Email ID1', primaryLocation: 'Torento', status: 'Active', isDeleting: false
     },
@@ -96,6 +97,19 @@ export class ListComponent implements OnInit, OnDestroy {
     else {
       this.company = this.company.filter((val) => val.companyName.toLowerCase().includes(value));
     }
+  }
+
+  private getAllCompany() {
+    this.company = [];
+    this.companyService.getAllCompany().subscribe((res: any) => {
+      if (res && res.length > 0) {
+        this.company = res;
+        console.log(res);
+      }
+      else {
+        console.log(res);
+      }
+    });
   }
 
   changeStatus() {

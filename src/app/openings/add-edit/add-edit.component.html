@@ -1,0 +1,436 @@
+
+<div class="EditPageHeader">
+  <div class="backBtnArea"><a class="TagBtn bg-purple" (click)="backContractsList()" title="Back"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a></div>
+  <div class="Header">
+    <h6 *ngIf="isAddMode">Add Openings </h6>
+    <h6 *ngIf="!isAddMode">Edit Openings </h6>
+  </div>
+  <div class="tagBtnArea">
+    <button type="submit" *ngIf="isAddMode" class="btn buttonShape buttonGraphics saveBtn" title="Save">
+      <img src="./../assets/graphic_icon_save.png" class="img-fluid mx-auto d-block " />
+    </button>
+
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics saveBtn" title="Save">
+      <img src="./../assets/graphic_icon_save.png" class="img-fluid mx-auto d-block " />
+    </button>
+    <button type="submit" *ngIf="!isAddMode" class="btn buttonShape buttonGraphics deleteBtn" title="Delete">
+      <img src="./../assets/graphic_icon_delete.png" class="img-fluid mx-auto d-block " />
+    </button>
+  </div>
+</div>
+
+
+
+<div class="settingsFromSection">
+ 
+  <div class="formArea" [@.disabled]="true">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-tab-group>
+
+        <mat-tab label="General">
+          <!--<div class="formSection">
+    <h4 class="sectionTitle">General</h4>-->
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Job Title </label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Client</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Implementation Partnet</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Vendor Name</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+          </div>
+
+        </mat-tab>
+
+        <mat-tab label="My Jobs">
+
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Job Id</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Job Title</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Client </label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">City</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">State</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Counntry</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Sales Manager </label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Recuritment manager</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <label for="" class="col-sm-1 col-form-label">Job Status</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <select name="jStatus" id="" class="form-select">
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Assigment Status</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <select name="aStatus" id="" class="form-select">
+                  <option value="Assigned">Assigned</option>
+                  <option value="Unassigment">Unassigment</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </mat-tab>
+        <mat-tab label="Location">
+
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">City</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">State</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <label for="" class="col-sm-1 col-form-label">Country </label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Remote</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+          </div>
+
+
+        </mat-tab>
+        <mat-tab label="Position Hire">
+
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Contrat</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Contract to hire</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">F Duration</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <select name="duration" id="" class="form-select">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+                <select name="duration" id="" class="form-select">
+                  <option value="year">Year</option>
+                  <option value="month">Month</option>
+                </select>
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Client Pay Rate</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <select name="c_payrate" id="" class="form-select">
+                  <option value="USD">USD</option>
+                  <option value="CAD">CAD</option>
+                  <option value="PESOS">PESOS</option>
+                  <option value="INR">INR</option>
+                </select>
+                <select name="c_payrate" id="" class="form-select">
+                  <option value="perAnnun">PerAnnun</option>
+                  <option value="perHour">Per Hour</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Probable Pay Rate</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <select name="p_payrate" id="" class="form-select">
+                  <option value="perAnnun">PerAnnun</option>
+                  <option value="perHour">Per Hour</option>
+                </select>
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Tentative Start Date</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text"
+                       placeholder="Datepicker"
+                       class="form-control"
+                       bsDatepicker
+                       [bsConfig]="{ isAnimated: true }" formControlName="tentative_Start_Date">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <label for="" class="col-sm-1 col-form-label">Subvendor</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <select name="Subvendor" id="" class="form-select">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Clearance</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <select name="Clearance" id="" class="form-select">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+        </mat-tab>
+        <mat-tab label="Required Documents">
+
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Resume</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="file" multiple /><button class="btn btn-success" title="Upload"> <i class="fa fa-cloud-upload" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">ID</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Linkedin</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Reference</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Visa</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <select name="Subvendor" id="" class="form-select">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">DL</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Local Candidates</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <select name="LocalCandidates" id="" class="form-select">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Visa Sponsprship</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <select name="VisaSponsprship" id="" class="form-select">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Visas</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <select name="Subvendor" id="" class="form-select">
+                </select>
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Education Qualification</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <label for="" class="col-sm-1 col-form-label">No of Position</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control" >
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Job Description">
+
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Skills</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <ng-select [items]="skillsList"
+                           bindLabel="item_text"
+                           bindValue="item_id"
+                           [ngModelOptions]="{standalone: true}"
+                           [addTag]="addSkills"
+                           [multiple]="true"
+                           class="custom"
+                           placeholder="Select Skills"
+                           [(ngModel)]="Skills">
+                </ng-select>
+                <span id="basic-addon1">
+                  <select name="LocalCandidates" id="" class="form-select">
+                    <option value="2000">2000</option>
+                    <option value="2001">2001</option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                  </select>
+                  </span>
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Sales Manager</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="" class="col-sm-1 col-form-label">Recuriment Manager</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <label for="" class="col-sm-1 col-form-label">Assigned to</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <label for="" class="col-sm-1 col-form-label">Recuriment Manager</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <!--<label for="" class="col-sm-1 col-form-label">Primary Recuriter</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input type="text" class="form-control">
+              </div>
+            </div>-->
+          </div>
+
+        </mat-tab>
+      </mat-tab-group>
+    
+    </form>
+  </div>
+</div>
+
+

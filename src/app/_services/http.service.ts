@@ -90,10 +90,10 @@ export class HttpService {
   }
 
   private getRequestHeader(): HttpHeaders {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+   // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.currentUser.access_token,
+     // 'Authorization': 'Bearer ' + this.currentUser.access_token,
       'Cache-Control': 'no-cache',
       'If-Modified-Since': '0'
     });
@@ -101,7 +101,7 @@ export class HttpService {
 
 
   private getFullUrl(url: string): string {
-    return `${environment.apiUrl}/api/` + url;
+    return `${environment.apiUrl}/api-docs/` + url;
   }
 
   private onSuccess(res: any): any {

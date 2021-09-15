@@ -1,0 +1,34 @@
+<div class="settingPanel">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <div class="companyActionDropdown">
+      <select name="selectedStatus" [(ngModel)]="status" id="aantal" class="form-select" (ngModelChange)="changeStatus()">
+        <option *ngFor="let st of statusList" [value]="st">{{st}}</option>
+      </select>
+    </div>
+    <div class="col-md-4 titleActionArea">
+      <div class="col-md-8 px-md-2">
+        <div class="searchBox">
+          <input class="form-control searchCandidate" type="text" placeholder="Search by Job Id" (change)="search($event.target.value)" aria-label="Search">
+          <a><img src="./../assets/loupe.svg" class="img-fluid " alt="icon"></a>
+        </div>
+      </div>
+      <a routerLink="add" class="TagBtn bg-blue" title="Add openings"><i class="fa fa-users" aria-hidden="true"></i></a>
+    </div>
+  </div>
+
+  <div class="settingsFromSection">  
+    <ag-grid-angular [domLayout]="'autoHeight'"
+                     class="ag-theme-balham"
+                     [rowData]="openings"
+                     rowHeight="40"
+                     columnHeight="50"
+                     id="2"
+                     [pagination]="true"
+                     (gridReady)="onGridReady($event)"
+                     [suppressRowClickSelection]="true"
+                     (cellClicked)="onCellClicked($event)"
+                     [paginationPageSize]="defaultPageSize"
+                     [columnDefs]="columnDefs">
+    </ag-grid-angular>
+  </div>
+</div>
